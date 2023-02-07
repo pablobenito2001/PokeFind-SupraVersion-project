@@ -1,12 +1,13 @@
 <script setup>
-
+    import SearchBar from './SearchBar.vue';
 </script>
 <template>
     <header class="Header">
-        <div>
+        <div class="Header-container">
             <h1 class="Header-title">Poke<span class="colored--red">Find</span></h1>
             <h3 class="Header-subtitle"><span class="colored--green">Supra</span> Version</h3>
         </div>
+            <SearchBar />
     </header>
 </template>
 <style scoped lang="scss">
@@ -25,18 +26,23 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 31.25rem;
+        flex-direction: column;
+        gap: 3.125rem;
+        min-height: 400px;
         background: linear-gradient(90deg, #36B1C7 0%, #960B33 99.48%);
         padding: var(--gap);
         background-size: 200% 100%;
-        animation: background 20s linear infinite;
+        animation: background 10s linear infinite;
+        &-container{
+            max-width: 37.5rem;
+        }
         &-title{
-            font-size: 4.6em;
+            font-size: clamp(4em, 10vw, 5em);
             font-weight: bold;
             text-align: center;
         }
         &-subtitle{
-            margin-top: 1.375rem;
+            margin-top: 1.5625rem;
             font-size: 1.8em;
             font-weight: bolder;
             text-align: center;
