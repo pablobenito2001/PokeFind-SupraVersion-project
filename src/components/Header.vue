@@ -15,6 +15,9 @@
         0% {
         background-position: 0% 50%; 
         }
+        25%{
+            background-position: 50% 100%;
+        }
         50% {
             background-position: 100% 50%;
         }
@@ -32,7 +35,7 @@
         background: linear-gradient(90deg, #36B1C7 0%, #960B33 99.48%);
         padding: var(--gap);
         background-size: 200% 100%;
-        animation: background 10s linear infinite;
+        animation: background 15s linear infinite alternate;
         &-container{
             max-width: 37.5rem;
         }

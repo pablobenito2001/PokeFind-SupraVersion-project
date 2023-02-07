@@ -1,11 +1,18 @@
 <script setup>
+    import { ref } from 'vue';
+    const props = defineProps({
+        show: {
+            type: Boolean,
+            default: true
+        }
+    })
 
 </script>
 <template>
-        <div class="Search--container">
-            <label for="search" class="Search-label">Gotta catch 'em all.</label>
+        <div class="Search--container" :class="$attrs.class">
+            <label for="search" v-if="show" class="Search-label">Gotta catch 'em all.</label>
             <input type="search" maxlength="20" class="Search" placeholder="Search your favorite Pokemon." id="search">
-            <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="Search-glass"/>
+            <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="Search-glass" v-if="show"/>
         </div>
 </template>
 <style scoped lang="scss">
@@ -27,7 +34,7 @@
         }
         &--container{
             position: relative;
-            max-width: 34.375rem;
+            max-width: 37.5rem;
             width: 100%;
         }
         &-glass{
