@@ -1,6 +1,6 @@
 <script setup>
     import Header from './components/Header.vue';
-import Wrapper from './components/Wrapper.vue';
+    import Wrapper from './components/Wrapper.vue';
 </script>
 
 <template>
@@ -13,6 +13,7 @@ import Wrapper from './components/Wrapper.vue';
         --gap: 1.5625rem;
         /* color */
         --ligth-color: #FFFBFC;
+        --dark-color: #a0a0a0;
         /* font color */
         --black-font: #1d1d1d; 
         --grey-font: #BABABA;
