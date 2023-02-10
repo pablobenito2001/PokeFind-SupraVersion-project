@@ -3,7 +3,7 @@
     import Select from './Select.vue';
 </script>
 <template>
-    <nav class="Nav">
+    <nav class="Nav" :class="$attrs.class">
         <div class="Nav--container">
             <SearchBar :show="false" class="Nav-search"/>
             <div class="Nav-selectgroup">
@@ -55,6 +55,7 @@
     .Nav{
         padding: 5px 20px;
         border-bottom: solid .0625rem var(--dark-color);
+        background-color: var(--ligth-color);
         &--container{
             display: flex;
             justify-content: space-between;
