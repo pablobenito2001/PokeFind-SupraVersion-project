@@ -24,7 +24,7 @@
         outline: none;
         display: inline-block;
         color: var(--black-font);
-        font-size: .8em;
+        font-size: .9em;
         font-weight: bold;
         overflow: hidden;
         transition: padding 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);

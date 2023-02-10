@@ -1,12 +1,27 @@
 import { ref } from 'vue';
 
 export function useGetAsyncData(URL){
-    const result = ref(null);
+    const result = ref([]);
     const error = ref(null);
 
-    async function request(){
-        const data = await fetch(URL);
-        result.value = await data.json();
-    }
+    const filters = ref({
+        name: null,
+        type: null,
+        region: null
+    });
 
+    (async function request(){
+        try{
+            let data = await (await fetch(URL)).json();
+            result.value = data.results;
+        }catch(e){  
+            console.log(e, e.status)
+            error.value = e;
+        }
+    })();
+
+    return {
+        data: result,
+        error: error
+    };
 }
