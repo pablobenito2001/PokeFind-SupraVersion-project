@@ -50,6 +50,9 @@
         }
     }
 
+    :slotted(.selected){
+        color: var(--black-font);
+    }
     .show{
         height: auto;
         opacity: 1;

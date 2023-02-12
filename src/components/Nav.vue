@@ -1,6 +1,10 @@
 <script setup>
     import SearchBar from './SearchBar.vue';
     import Select from './Select.vue';
+
+    function cosas() {
+        console.log('Cosa')
+    }
 </script>
 <template>
     <nav class="Nav" :class="$attrs.class">
@@ -11,7 +15,8 @@
                     <template v-slot:name>
                         Select Type
                     </template>
-                    <template v-slot:options>
+                    <template v-slot:options @click="">
+                        <li class="Select-item selected">All</li>                        
                         <li class="Select-item">Normal</li>
                         <li class="Select-item">Psychic</li>
                         <li class="Select-item">Rock</li>
@@ -37,9 +42,10 @@
                         Select Region
                     </template>
                     <template v-slot:options>
+                        <li class="Select-item selected">All</li>
                         <li class="Select-item">Kanto</li>
                         <li class="Select-item">Jotho</li>
-                        <li class="Select-item">Hoen</li>
+                        <li class="Select-item">Hoenn</li>
                         <li class="Select-item">Sinnoh</li>
                         <li class="Select-item">Unova</li>
                         <li class="Select-item">Kalos</li>

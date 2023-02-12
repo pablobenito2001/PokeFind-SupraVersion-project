@@ -21,6 +21,6 @@
         --grey-font: #BABABA;
         --grey-card-font: #979797;
         /* shadow */
-        --card-shadow: box-shadow: 5px 5px 12px 1px rgba(133,133,133,0.68);
+        --card-shadow: 5px 5px 12px 1px rgba(133,133,133,0.68);
     }
 </style>
