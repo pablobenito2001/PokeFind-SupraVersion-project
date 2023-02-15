@@ -1,20 +1,15 @@
 <script setup>
     import { ref } from 'vue';
-    import { useGetAsyncData } from '../../composables/useGetAsyncData';
+    import { useGetAsyncData } from '../../../composables/useGetAsyncData.js'
     import CardLoader from './CardLoader.vue';
     import Card from './Card.vue'
 
-    const poke = ref(useGetAsyncData({region: 'alola'}));
+    const poke = ref(useGetAsyncData({}));
 
-    function change(e){
-        console.log(e.target.innerText.toLowerCase())
-        poke.value = useGetAsyncData({region: 'kanto'})
-    }
 </script>
 <template>
-    <button @click="change">Kanto</button>
     <div class="Container">
-        <template v-for="item in poke.data">
+        <template v-for="(item, index) in poke.data" :key="index">
             <Suspense>
                 <template #default>
                     <Card :url="item.url"/>

@@ -1,0 +1,38 @@
+[
+    {
+        "id": 0,
+        "name": "Kanto"
+    },
+    {
+        "id": 1,
+        "name": "Jotho"
+    },
+    {
+        "id": 2,
+        "name": "Hoenn"
+    },
+    {
+        "id": 3,
+        "name": "Sinoh"
+    },
+    {
+        "id": 4,
+        "name": "Unova"
+    },
+    {
+        "id": 5,
+        "name": "Kalos"
+    },
+    {
+        "id": 6,
+        "name": "Alola"
+    },
+    {
+        "id": 7,
+        "name": "Galar"
+    },
+    {
+        "id": 8,
+        "name": "Palde"
+    }
+]

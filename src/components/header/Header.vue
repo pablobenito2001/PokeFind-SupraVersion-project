@@ -1,5 +1,5 @@
 <script setup>
-    import SearchBar from './SearchBar.vue';
+    import SearchBar from '../nav/SearchBar.vue';
 </script>
 <template>
     <header class="Header">
@@ -7,7 +7,7 @@
             <h1 class="Header-title">Poke<span class="colored--red">Find</span></h1>
             <h3 class="Header-subtitle"><span class="colored--green">Supra</span> Version</h3>
         </div>
-            <SearchBar />
+            <SearchBar>Gotta catch 'em all.</SearchBar>
     </header>
 </template>
 <style scoped lang="scss">

@@ -1,17 +1,11 @@
 <script setup>
-    const props = defineProps({
-        show: {
-            type: Boolean,
-            default: true
-        }
-    })
-
+   
 </script>
 <template>
         <div class="Search--container" :class="$attrs.class">
-            <label for="search" v-if="show" class="Search-label">Gotta catch 'em all.</label>
+            <label for="search" class="Search-label"><slot></slot></label>
             <div class="Search-relative">
-                <input type="search" maxlength="20" class="Search" placeholder="Search your favorite Pokemon." id="search">
+                <input type="search" maxlength="20" class="Search" placeholder="Search your favorite Pokemon.">
                 <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="Search-glass"/>
             </div>
         </div>

@@ -1,13 +1,25 @@
 <script setup>
-    import { ref } from 'vue';
+    import { ref, watch } from 'vue';
+
+    const props = defineProps({
+        get_data: String
+    });
 
     const open = ref(false)
+    const data = ref(null)
+
+    async function getData(){
+        const j = await(await fetch(`../generations.json`)).json();
+        data.value = j;
+        console.log(data.value)
+    }
+    getData()
 </script>
 <template>
     <div class="Select">
-        <button class="Select-button" @click="open = !open"><slot name="name"></slot><font-awesome-icon icon="fa-solid fa-angle-down" class="icon" :class="{ 'icon-active': open }"/></button>
+        <button class="Select-button" @click="open = !open"><slot></slot><font-awesome-icon icon="fa-solid fa-angle-down" class="icon" :class="{'icon-active': open}"/></button>
         <ul class="Select-options" :class="{ 'show': open }">
-            <slot name="options"></slot>
+            <li v-for="item in data" :key="item.id" class="Select-item">{{ item.name }}</li>
         </ul>
     </div>
 </template>
@@ -38,20 +50,15 @@
             border: solid 1px var(--dark-color);
             transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-    }
-
-    :slotted(.Select-item){
-        cursor: pointer;
-        margin: 5px 0;
-        transition: color 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
-        width: 100%;
-        &:hover{
-            color: var(--black-font);
+        &-item{
+            cursor: pointer;
+            margin: 5px 0;
+            transition: color 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+            width: 100%;
+            &:hover{
+                color: var(--black-font);
+            }
         }
-    }
-
-    :slotted(.selected){
-        color: var(--black-font);
     }
     .show{
         height: auto;

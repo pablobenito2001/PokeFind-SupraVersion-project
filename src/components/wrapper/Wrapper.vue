@@ -1,10 +1,8 @@
 <script setup>
-    import Nav from './Nav.vue';
     import CardView from './Cards/CardView.vue';
 </script>
 <template>
     <main class="Wrapper">
-        <Nav class="Wrapper-nav"/>  
         <CardView />
     </main>
 </template>

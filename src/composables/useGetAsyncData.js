@@ -1,12 +1,12 @@
 import { ref } from 'vue';
 
-export function useGetAsyncData({ region = 'none', type = null, name = null }){
-    const result = ref([]);
+export function useGetAsyncData({ region = 'default', type = null, name = null }){
+    const result = ref(null);
     const error = ref(null);
 
     const filters = ref({
-        region: {
-            'none': 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008',
+        regions: {
+            'default': 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008',
             'kanto': 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=151',
             'jotho': 'https://pokeapi.co/api/v2/pokemon?offset=151&limit=100',
             'hoenn': 'https://pokeapi.co/api/v2/pokemon?offset=251&limit=135',
@@ -21,7 +21,7 @@ export function useGetAsyncData({ region = 'none', type = null, name = null }){
 
     (async function request(){
         try{
-            let data = await (await fetch(filters.value.region[region])).json();
+            let data = await (await fetch(filters.value.regions[region])).json();
             result.value = data.results;
         }catch(e){  
             console.log(e, e.status)

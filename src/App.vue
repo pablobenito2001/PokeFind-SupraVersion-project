@@ -1,6 +1,6 @@
 <script setup>
-    import Header from './components/Header.vue';
-    import Wrapper from './components/Wrapper.vue';
+    import Header from './components/header/Header.vue';
+    import Wrapper from './components/wrapper/Wrapper.vue';
 </script>
 
 <template>
