@@ -1,17 +1,20 @@
 <script setup>
-    import { ref, watch } from 'vue';
+    import { ref } from 'vue';
 
     const props = defineProps({
         get_data: String
     });
 
-    const open = ref(false)
-    const data = ref(null)
+    const open = ref(false);
+    const data = ref(null);
 
     async function getData(){
-        const j = await(await fetch(`../generations.json`)).json();
-        data.value = j;
-        console.log(data.value)
+        try{
+            const j = await(await fetch(props.get_data)).json();
+            data.value = j;
+        }catch(e){
+            console.error(e)
+        }
     }
     getData()
 </script>
@@ -19,7 +22,7 @@
     <div class="Select">
         <button class="Select-button" @click="open = !open"><slot></slot><font-awesome-icon icon="fa-solid fa-angle-down" class="icon" :class="{'icon-active': open}"/></button>
         <ul class="Select-options" :class="{ 'show': open }">
-            <li v-for="item in data" :key="item.id" class="Select-item">{{ item.name }}</li>
+            <li v-for="item in data" :key="item.id" class="Select-item" @click="useGetAsyncData({region: $event.target.innerText.toLowerCase()})">{{ item.name }}</li>
         </ul>
     </div>
 </template>
@@ -48,6 +51,7 @@
             background-color: white;
             box-shadow: inset 3px 3px 5px 0px #eeeeee, inset -3px -3px 5px 0px #eeeeee;
             border: solid 1px var(--dark-color);
+            z-index: 2;
             transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         &-item{

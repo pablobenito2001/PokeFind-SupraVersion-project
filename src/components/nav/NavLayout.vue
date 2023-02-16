@@ -3,18 +3,15 @@
     import SearchBar from './SearchBar.vue';
     import Select from './Select.vue';
 
-    const search = ref(null)
-
-    function log(e){
-        console.log(e)
-    }
-
-    provide('search', search);
 </script>
 <template>
     <nav class="Nav" :class="$attrs.class">
         <div class="Nav--container">
-            <SearchBar :show="false" class="Nav-search" @search="log"/>
+            <SearchBar :show="false" class="Nav-search"/>
+            <div class="Nav-selectgroup">
+                <Select get_data="../../../src/types.json">Select Type</Select>
+                <Select get_data="../../../src/generations.json">Select Region</Select>
+            </div> 
         </div>
     </nav>
 </template>

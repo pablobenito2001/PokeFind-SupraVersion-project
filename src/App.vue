@@ -1,10 +1,12 @@
 <script setup>
     import Header from './components/header/Header.vue';
     import Wrapper from './components/wrapper/Wrapper.vue';
+    import NavLayout from './components/nav/NavLayout.vue';
 </script>
 
 <template>
    <Header />
+   <NavLayout />
    <Wrapper />
 </template>
 
