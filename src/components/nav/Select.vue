@@ -4,7 +4,6 @@
     const props = defineProps({
         get_data: String
     });
-
     const open = ref(false);
     const data = ref(null);
 
@@ -16,13 +15,17 @@
             console.error(e)
         }
     }
-    getData()
+
+    function emitSelect(e){
+        
+    }
+    getData();
 </script>
 <template>
     <div class="Select">
         <button class="Select-button" @click="open = !open"><slot></slot><font-awesome-icon icon="fa-solid fa-angle-down" class="icon" :class="{'icon-active': open}"/></button>
         <ul class="Select-options" :class="{ 'show': open }">
-            <li v-for="item in data" :key="item.id" class="Select-item" @click="useGetAsyncData({region: $event.target.innerText.toLowerCase()})">{{ item.name }}</li>
+            <li v-for="item in data" :key="item.id" class="Select-item" @click="emitSelect">{{ item.name }}</li>
         </ul>
     </div>
 </template>

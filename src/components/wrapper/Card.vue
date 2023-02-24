@@ -1,4 +1,8 @@
 <script setup>
+    function log(e){
+        console.log('me clikeaste')
+    }
+
     const props = defineProps({
         name: {
             default: "MissingNo",
@@ -41,8 +45,8 @@
     const {name, id, image, types} = props;
 </script>
 <template>
-    <div class="Card">
-        <img :src="image" class="Card-image">
+    <div class="Card" @click="log">
+        <img :src="image" class="Card-image" :alt="name" :title="name">
         <div class="Card-data">
             <div>
                 <span class="Card-dex">N°{{ id }}</span>
@@ -50,7 +54,7 @@
             </div>
             <div class="Card-types">
                 <template v-for="url in types">
-                    <img :src="urlTypes[url]" :alt="url" class="Card-type">
+                    <img :src="urlTypes[url]" :alt="url" class="Card-type" :title="url.toUpperCase()">
                 </template>
             </div>
         </div>
@@ -59,14 +63,14 @@
 <style scoped lang="scss"> 
     .Card{
         background-color: var(--grey-color);
-        backdrop-filter: blur(.9375rem);
         color: var(--grey-card-font);
-        padding: 10px;
+        padding: .9375rem .625rem;
         display: flex;
         justify-content: flex-start;
         align-items: center;
         box-shadow: 1px 1px 15px 1px #8585852d;
         cursor: pointer;
+        transition: box-shadow 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
         &-data{
             display: flex;
             justify-content: space-between;
@@ -100,8 +104,11 @@
         &-type{
             max-width: 2.8125rem;
         }
-        &:hover .Card-image{
+        &:hover{
+            box-shadow: 3px 3px 15px 1px #85858557;
+            .Card-image{
             filter: unset;
+            }
         }
     }
 </style>

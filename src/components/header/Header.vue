@@ -2,7 +2,7 @@
     import SearchBar from '../nav/SearchBar.vue';
 </script>
 <template>
-    <header class="Header">
+    <header class="Header" v-once>
         <div class="Header-container">
             <h1 class="Header-title">Poke<span class="colored--red">Find</span></h1>
             <h3 class="Header-subtitle"><span class="colored--green">Supra</span> Version</h3>

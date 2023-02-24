@@ -3,14 +3,17 @@
     import SearchBar from './SearchBar.vue';
     import Select from './Select.vue';
 
+    function log(e){
+        console.log(e)
+    }
 </script>
 <template>
     <nav class="Nav" :class="$attrs.class">
         <div class="Nav--container">
             <SearchBar :show="false" class="Nav-search"/>
             <div class="Nav-selectgroup">
-                <Select get_data="../../../src/types.json">Select Type</Select>
-                <Select get_data="../../../src/generations.json">Select Region</Select>
+                <Select get_data="../../../src/types.json" @select="log">Select Type</Select>
+                <Select get_data="../../../src/generations.json" @select="log">Select Region</Select>
             </div> 
         </div>
     </nav>
@@ -35,6 +38,11 @@
             align-items: center;
             justify-content: center;
             gap: var(--gap);
+        }
+    }
+    @media screen and (max-width: 670px) {
+        .Nav-selectgroup{
+            display: none;
         }
     }
 </style>

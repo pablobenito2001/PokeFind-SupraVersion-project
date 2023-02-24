@@ -1,13 +1,12 @@
 <script setup>
     import Header from './components/header/Header.vue';
-    import Wrapper from './components/wrapper/Wrapper.vue';
-    import NavLayout from './components/nav/NavLayout.vue';
+    import Main from './components/wrapper/Main.vue';
+    import Button from './components/buttons/button.vue'
 </script>
 
 <template>
    <Header />
-   <NavLayout />
-   <Wrapper />
+   <Main />
 </template>
 
 <style>
