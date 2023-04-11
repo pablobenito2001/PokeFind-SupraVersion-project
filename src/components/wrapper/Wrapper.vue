@@ -1,21 +1,15 @@
 <script setup>
-    import Card from './Card.vue'
-    import { storeToRefs } from 'pinia';
+    import Card from './Card.vue';
+    import { usePokemonFilter } from '../../composables/usePokemonFilter';
 
-    import { usePokemonStore } from '../../stores/usePokemonStore';
-    import Loader from '../../assets/Loader.svg'
+    import Loader from '../../assets/Loader.svg';  
 
-    const store = usePokemonStore();
-    const { pokemonArr } = storeToRefs(store);
+    const { resultArray } = usePokemonFilter();
 
-    store.getPokemonData('kalos');
 </script>
 <template>
-    <div v-if="pokemonArr.length === 0 || !Array.isArray(pokemonArr)" class="Loading">
-        <img :src="Loader" alt="loading" class="Loading-svg">
-    </div>
-    <div class="Container" v-else>
-        <Card v-for="item in pokemonArr" :key="item.id" :name="item._name" :id="item._id" :image="item._image" :types="item._types"/>
+    <div class="Container">
+        <Card v-for="item in resultArray" :key="item._id" :name="item._name" :id="item._id" :image="item._image" :types="item._types"/>
     </div> 
 </template>
 <style scoped lang="scss">

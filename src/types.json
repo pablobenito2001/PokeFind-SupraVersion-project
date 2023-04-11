@@ -1,74 +1,78 @@
 [
     {
         "id": 0,
-        "name": "Normal"
+        "name": "All"
     },
     {
         "id": 1,
-        "name": "Psychic"
+        "name": "Normal"
     },
     {
         "id": 2,
-        "name": "Rock"
+        "name": "Psychic"
     },
     {
         "id": 3,
-        "name": "Grass"
+        "name": "Rock"
     },
     {
         "id": 4,
-        "name": "Ground"
+        "name": "Grass"
     },
     {
         "id": 5,
-        "name": "Steel"
+        "name": "Ground"
     },
     {
         "id": 6,
-        "name": "Electric"
+        "name": "Steel"
     },
     {
         "id": 7,
-        "name": "Water"
+        "name": "Electric"
     },
     {
         "id": 8,
-        "name": "Fire"
+        "name": "Water"
     },
     {
         "id": 9,
-        "name": "Fairy"
+        "name": "Fire"
     },
     {
         "id": 10,
-        "name": "Dark"
+        "name": "Fairy"
     },
     {
         "id": 11,
-        "name": "Poison"
+        "name": "Dark"
     },
     {
         "id": 12,
-        "name": "Flying"
+        "name": "Poison"
     },
     {
         "id": 13,
-        "name": "Ghost"
+        "name": "Flying"
     },
     {
         "id": 14,
-        "name": "Dragon"
+        "name": "Ghost"
     },
     {
         "id": 15,
-        "name": "Figthing"
+        "name": "Dragon"
     },
     {
         "id": 16,
-        "name": "Bug"
+        "name": "Fighting"
     },
     {
         "id": 17,
+        "name": "Bug"
+    },
+    {
+        "id": 18,
         "name": "Ice"
     }
 ]

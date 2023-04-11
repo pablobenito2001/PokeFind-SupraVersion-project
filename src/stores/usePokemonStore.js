@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { useUnwrapData } from "../composables/useUnwrapData";
+import { useUnwrapData } from "../utils/useUnwrapData";
 
 const regions = {
     'all': 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=1008',
@@ -15,30 +15,27 @@ const regions = {
 };
 
 export const usePokemonStore = defineStore('filter', {
-        state: () => ({ pokemonArr: [], filterArr: []}),
+        state: () => ({ pokemonArr: [], name: '', type: '' }),
         getters: {
             getPokemon: (state) => state.pokemonArr,
+            getNameKey: (state) => state.name,
+            getTypeKey: (state) => state.type
         },
         actions: {
             async getPokemonData(region){
+                this.pokemonArr.length = 0;
                 try{
-                    const json = (await (await fetch(regions[region])).json()).results;
+                    const json = (await (await fetch(regions[region])).json()).results; 
                     this.pokemonArr = await useUnwrapData(json);
                 }catch(e){
-                    return e
+                    this.pokemonArr = new Error('Algo salio mal en el store get.')
                 }
             },
-            changeName(value){
+            setName(value){
                 this.name = value;
             },
-            changeRegion(value){
-                this.region = value;
-            },
-            changeType(value){
+            setType(value){
                 this.type = value;
-            },
-            changeFilterArr(value){
-                this.filterArr = value;
             }
         }
 

@@ -2,7 +2,8 @@
     import { ref } from 'vue';
 
     const props = defineProps({
-        get_data: String
+        get_data: String,
+        function_do: Function
     });
     const open = ref(false);
     const data = ref(null);
@@ -15,18 +16,19 @@
             console.error(e)
         }
     }
-
-    function emitSelect(e){
-        
-    }
-    getData();
+    getData()
 </script>
 <template>
     <div class="Select">
         <button class="Select-button" @click="open = !open"><slot></slot><font-awesome-icon icon="fa-solid fa-angle-down" class="icon" :class="{'icon-active': open}"/></button>
-        <ul class="Select-options" :class="{ 'show': open }">
-            <li v-for="item in data" :key="item.id" class="Select-item" @click="emitSelect">{{ item.name }}</li>
-        </ul>
+        <div class="Select-container" v-if="open">
+            <ul class="Select-options">
+                <li v-for="item in data" :key="item.id" class="Select-item" @click="function_do($event.target.innerText.toLowerCase())">{{ item.name }}</li>
+            </ul>
+        </div>
+        <Teleport to="body">
+            <div class="Select-window" v-if="open" @click.stop="() => open = false"></div>
+        </Teleport>
     </div>
 </template>
 <style scoped lang="scss">
@@ -36,6 +38,7 @@
         line-height: normal;
         position: relative;
         &-button{
+            color: var(--grey-font);
             font-weight: bold;
             cursor: pointer;
             transition: color 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -43,19 +46,15 @@
                 color: var(--black-font);
             }
         }
-        &-options{
+        &-container{
             position: absolute;
             padding: 3px 20px;
             overflow: hidden;
-            width: 100%;
-            opacity: 0; 
-            height: 0;
             margin-top: 5px;
             background-color: white;
             box-shadow: inset 3px 3px 5px 0px #eeeeee, inset -3px -3px 5px 0px #eeeeee;
             border: solid 1px var(--dark-color);
             z-index: 2;
-            transition: opacity 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         &-item{
             cursor: pointer;
@@ -66,11 +65,14 @@
                 color: var(--black-font);
             }
         }
-    }
-    .show{
-        height: auto;
-        opacity: 1;
-        transition: opacity 0.2s linear;
+        &-window{
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+        }
     }
 
     .icon{

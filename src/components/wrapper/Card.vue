@@ -1,6 +1,6 @@
 <script setup>
     function log(e){
-        console.log('me clikeaste')
+        console.log(props.name)
     }
 
     const props = defineProps({

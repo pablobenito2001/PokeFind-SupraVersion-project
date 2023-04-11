@@ -1,15 +1,18 @@
 <script setup>
+    import { usePokemonFilter } from '../../composables/usePokemonFilter';
 
+    const { changeName } = usePokemonFilter();
 </script> 
 <template>
         <div class="Search--container" :class="$attrs.class">
             <label for="search" class="Search-label"><slot></slot></label>
             <div class="Search-relative">
-                <input type="search" maxlength="20" class="Search" placeholder="Search your favorite Pokemon." @input="(e) => store.changeName(e.target.value)">
+                <input type="search" maxlength="20" class="Search" placeholder="Search your favorite Pokemon." @input="changeName($event.target.value)">
                 <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="Search-glass"/>
             </div>
         </div>
 </template>
+
 <style scoped lang="scss">
     .Search{
         width: 100%;
