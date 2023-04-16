@@ -1,10 +1,10 @@
 <script setup>
+    import Select from './Select.vue';
+    import SearchBar from './SearchBar.vue';
+
     import { usePokemonFilter } from '../../composables/usePokemonFilter';
 
-    import SearchBar from './SearchBar.vue';
-    import Select from './Select.vue';
-
-    const { changeType } = usePokemonFilter()
+    const { changeType, changeRegion } = usePokemonFilter()
 </script>
 <template>
     <nav class="Nav" :class="$attrs.class">
@@ -12,7 +12,7 @@
             <SearchBar :show="false" class="Nav-search"/>
             <div class="Nav-selectgroup">
                 <Select get_data="../../../src/types.json" :function_do="changeType">Select Type</Select>
-                <Select get_data="../../../src/generations.json">Select Region</Select>
+                <Select get_data="../../../src/generations.json" :function_do="changeRegion">Select Region</Select>
             </div> 
         </div>
     </nav>

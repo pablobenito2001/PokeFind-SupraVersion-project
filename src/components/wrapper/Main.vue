@@ -5,6 +5,12 @@
 <template>
     <main class="Main">
         <NavLayout class="Main-nav"/>
+        <!-- <Suspense>
+            <Wrapper />
+            <template #fallback>
+                ...loading
+            </template>
+        </Suspense> -->
         <Wrapper />
     </main>
 </template>
@@ -14,7 +20,7 @@
         &-nav{
             position: sticky;
             top: 0;
-            z-index: 2;
+            z-index: 1;
         }
     }
 </style>

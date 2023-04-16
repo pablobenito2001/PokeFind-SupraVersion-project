@@ -1,6 +1,6 @@
 <script setup>
     import { usePokemonFilter } from '../../composables/usePokemonFilter';
-
+    
     const { changeName } = usePokemonFilter();
 </script> 
 <template>

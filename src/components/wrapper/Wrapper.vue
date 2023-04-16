@@ -2,15 +2,19 @@
     import Card from './Card.vue';
     import { usePokemonFilter } from '../../composables/usePokemonFilter';
 
-    import Loader from '../../assets/Loader.svg';  
+    const { resultArray ,getDataPokemon } = usePokemonFilter();
 
-    const { resultArray } = usePokemonFilter();
-
+    getDataPokemon();
 </script>
 <template>
-    <div class="Container">
+    <div class="Wrapper">
+        <div class="Wrapper-cards" >
         <Card v-for="item in resultArray" :key="item._id" :name="item._name" :id="item._id" :image="item._image" :types="item._types"/>
-    </div> 
+        </div> 
+        <div class="Wrapper-buttons">
+
+        </div>
+    </div>
 </template>
 <style scoped lang="scss">
     @keyframes loading {
@@ -21,15 +25,17 @@
             transform: rotate(360deg);
         }
     }
-    .Container{
+    .Wrapper{
+        max-width: 1400px;
+        margin: auto;
+        &-cards{
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
         grid-auto-rows: 11.25rem;
         gap: var(--gap);
-        max-width: 1400px;
-        margin: auto;
         padding: var(--gap) .625rem;
         color: black;
+    }
     }
 
     .Loading{

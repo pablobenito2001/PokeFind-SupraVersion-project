@@ -30,9 +30,10 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        color: var(--font-white);
         gap: 3.125rem;
         min-height: 400px;
-        background: linear-gradient(90deg, #36B1C7 0%, #960B33 99.48%);
+        background: linear-gradient(90deg, var(--font-green) 0%, var(--font-red) 99.48%);
         padding: var(--gap);
         background-size: 200% 100%;
         animation: background 15s linear infinite alternate;
@@ -53,9 +54,9 @@
     }
 
     .colored--red{
-        color: #DA3564;
+        color: var(--font-red);
     }
     .colored--green{
-        color: #41B883;
+        color: var(--font-green);
     }
 </style>    

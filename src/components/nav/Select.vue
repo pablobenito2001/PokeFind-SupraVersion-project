@@ -20,14 +20,14 @@
 </script>
 <template>
     <div class="Select">
-        <button class="Select-button" @click="open = !open"><slot></slot><font-awesome-icon icon="fa-solid fa-angle-down" class="icon" :class="{'icon-active': open}"/></button>
+        <button class="Select-button" @click.self="open = !open"><slot></slot><font-awesome-icon icon="fa-solid fa-angle-down" class="icon" :class="{'icon-active': open}"/></button>
         <div class="Select-container" v-if="open">
             <ul class="Select-options">
                 <li v-for="item in data" :key="item.id" class="Select-item" @click="function_do($event.target.innerText.toLowerCase())">{{ item.name }}</li>
             </ul>
         </div>
         <Teleport to="body">
-            <div class="Select-window" v-if="open" @click.stop="() => open = false"></div>
+            <div class="Select-window" v-if="open" @click="() => open = false"></div>
         </Teleport>
     </div>
 </template>
@@ -54,7 +54,6 @@
             background-color: white;
             box-shadow: inset 3px 3px 5px 0px #eeeeee, inset -3px -3px 5px 0px #eeeeee;
             border: solid 1px var(--dark-color);
-            z-index: 2;
         }
         &-item{
             cursor: pointer;
@@ -66,12 +65,12 @@
             }
         }
         &-window{
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
-            height: 100%;
+            height: 100vh;
             width: 100%;
-            z-index: 1;
+            cursor: pointer;
         }
     }
 

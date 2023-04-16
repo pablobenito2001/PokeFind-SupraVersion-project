@@ -46,7 +46,7 @@
 </script>
 <template>
     <div class="Card" @click="log">
-        <img :src="image" class="Card-image" :alt="name" :title="name">
+        <img :src="image" class="Card-image" :alt="name" :title="name" loading="lazy">
         <div class="Card-data">
             <div>
                 <span class="Card-dex">N°{{ id }}</span>
