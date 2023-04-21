@@ -46,7 +46,7 @@ export const usePokemonFilter = function () {
             return;
         }
     }
-    
+
     return {
         getDataPokemon,
         resultArray

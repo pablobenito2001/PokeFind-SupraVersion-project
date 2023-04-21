@@ -1,41 +1,42 @@
-[   {
+[   
+    {
         "id": 0,
-        "name": "All"
+        "name": "all"
     },
     {
         "id": 1,
-        "name": "Kanto"
+        "name": "kanto"
     },
     {
         "id": 2,
-        "name": "Jotho"
+        "name": "jotho"
     },
     {
         "id": 3,
-        "name": "Hoenn"
+        "name": "hoenn"
     },
     {
         "id": 4,
-        "name": "Sinnoh"
+        "name": "sinnoh"
     },
     {
         "id": 5,
-        "name": "Unova"
+        "name": "unova"
     },
     {
         "id": 6,
-        "name": "Kalos"
+        "name": "kalos"
     },
     {
         "id": 7,
-        "name": "Alola"
+        "name": "alola"
     },
     {
         "id": 8,
-        "name": "Galar"
+        "name": "galar"
     },
     {
         "id": 9,
-        "name": "Paldea"
+        "name": "paldea"
     }
 ]

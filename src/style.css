@@ -1,14 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap');
-
 :root {
-    /* font */
-    --font-green: #41B883; 
-    --font-red: #DA3564;
-    --font-black: #0f0f0f;
-    --font-white: #f1f1f1;
+    /* Colors */
+    --green: #41B883; 
+    --red: #DA3564;
+    --black: #0f0f0f;
+    --white: #fdfdfd;
+    --grey: #a0a0a0;
+    /* input */
+    --input-primary: #f5f5f5; 
+    --input-hover: #e7e7e7;
+    --input-active: #e4e4e4; 
     /* Tipografía */
-    --tipo-principal: 'Ubuntu', sans-serif;
-    --tipo-secundaria: Verdana;
+    --principal: 'Mulish', sans-serif;
+    --secundary: 'Space Mono', monospace;
+    /* Global */
+    --padding-card: .625rem;
+    --gap-cards: 1.25rem;
+    --gap-element: 1.25rem;
+    --box-shadow: 3px 3px 10px var(--input-active);
 }
 
 * {
@@ -23,7 +31,7 @@
 body {
     min-height: 100vh;
     font-size: 100%;
-    font-family: var(--tipo-principal);
+    font-family: var(--principal);
     line-height: 1.4em;
     -webkit-hyphens: auto;
         -ms-hyphens: auto;
@@ -31,6 +39,7 @@ body {
     font-smooth: always;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: var(--white);
 }
 
 img, picture, video, iframe, figure {
@@ -49,6 +58,7 @@ a {
     color: inherit;
     font-size: inherit;
 }
+
 
 p a {
     display: inline;

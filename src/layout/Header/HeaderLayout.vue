@@ -1,17 +1,19 @@
-<script setup>
-    import SearchBar from '../nav/SearchBar.vue';
-</script>
 <template>
     <header class="Header" v-once>
         <div class="Header-container">
             <h1 class="Header-title">Poke<span class="colored--red">Find</span></h1>
             <h3 class="Header-subtitle"><span class="colored--green">Supra</span> Version</h3>
         </div>
-            <SearchBar>Gotta catch 'em all.</SearchBar>
+        <div class="Header-caption">
+            <slot name="caption"/>
+        </div>
     </header>
 </template>
-<style scoped lang="scss">
-    @keyframes background {
+<script lang='ts' setup>
+    
+</script>
+<styles lang='scss' scoped>
+@keyframes background {
         0% {
         background-position: 0% 50%; 
         }
@@ -30,33 +32,35 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        color: var(--font-white);
-        gap: 3.125rem;
+        gap: .9375rem;
         min-height: 400px;
-        background: linear-gradient(90deg, var(--font-green) 0%, var(--font-red) 99.48%);
-        padding: var(--gap);
+        background: linear-gradient(90deg, var(--green) 0%, var(--red) 99.48%);
         background-size: 200% 100%;
         animation: background 15s linear infinite alternate;
-        &-container{
-            max-width: 37.5rem;
-        }
+        user-select: none;
+        color: var(--white);
         &-title{
-            font-size: clamp(4em, 10vw, 5em);
+            font-size: clamp(4em, 10vw, 7em);
+            line-height: .8em;
             font-weight: bold;
             text-align: center;
         }
         &-subtitle{
-            margin-top: 1.5625rem;
+            line-height: normal;
             font-size: 1.8em;
             font-weight: bolder;
             text-align: center;
         }
+        &-caption{
+            font-family: var(--secundary);
+            font-size: 1.7em;
+        }
     }
 
     .colored--red{
-        color: var(--font-red);
+        color: var(--red);
     }
     .colored--green{
-        color: var(--font-green);
+        color: var(--green);
     }
-</style>    
+</styles>
