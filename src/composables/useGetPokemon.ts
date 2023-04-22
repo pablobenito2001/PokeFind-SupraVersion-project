@@ -41,7 +41,16 @@ export const useGetPokemon = () => {
     })()
 
     watch([NameKey, TypeKey], () => {
-        DataLocal.value = FilterByName(DataClone.value, NameKey.value)
+        try{
+            ErrorLocal.value = null;
+            DataLocal.value = FilterByName(DataClone.value, NameKey.value)
+        }catch(e){
+            if (typeof e === "string") {
+                ErrorLocal.value = e.toUpperCase();
+            } else if (e instanceof Error) {
+                ErrorLocal.value = e
+            }
+        }
     })
 
     return {

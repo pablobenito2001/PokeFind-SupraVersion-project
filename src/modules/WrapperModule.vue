@@ -5,14 +5,17 @@
                 <SearchInput id="searcher" v-model="NameKey"/>
             </template>
             <template #slot_2>
-               <div class="Main-select">
+                <div class="Main-select">
                     <SelectTypeModule />
                     <SelectRegionModule />
-               </div>
+                </div>
             </template>
         </NavLayout>
         <main>
             <Loader v-if="DataLocal.length === 0"/>
+            <template v-else-if="isError()">
+                {{ ErrorLocal }}
+            </template>
             <template v-else>
                 <WrapperLayout>
                     <PokemonCard 
@@ -41,6 +44,8 @@
     import { useGetPokemon } from '../composables/useGetPokemon';
 
     const { DataLocal, ErrorLocal, NameKey } = useGetPokemon();
+
+    const isError = () => ErrorLocal.value instanceof Error;
 </script>
 <styles lang='scss' scoped>
     .Main-select{
