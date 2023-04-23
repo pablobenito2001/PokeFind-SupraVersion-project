@@ -1,8 +1,7 @@
 <template>
-    <nav class="Nav">
+    <nav class="Nav" :class="$attrs.class">
         <div class="Nav-container">
-            <slot name="slot_1"/>
-            <slot name="slot_2"/>   
+            <slot />
         </div>
     </nav>
 </template>
@@ -13,6 +12,8 @@
     .Nav{
         border-bottom: solid 2px var(--input-active);
         padding: .3125rem;
+        background-color: var(--white);
+        z-index: 2;
         &-container{
             display: flex;
             justify-content: space-between;

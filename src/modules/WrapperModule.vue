@@ -1,20 +1,21 @@
 <template>
     <div class="Main">
-        <NavLayout>
-            <template #slot_1>
-                <SearchInput id="searcher" v-model="NameKey"/>
-            </template>
-            <template #slot_2>
-                <div class="Main-select">
-                    <SelectTypeModule />
-                    <SelectRegionModule />
-                </div>
-            </template>
+        <NavLayout class="Main-nav">
+            <SearchInput id="searcher" v-model.trim="NameKey" class="Main-media"/>
+            <div class="Main-select">
+                <SelectTypeModule class="Main-media"/>
+                <SelectRegionModule class="Main-media"/>
+            </div>
+            <NavMobile>
+                <SearchInput id="searcher" v-model.trim="NameKey"/>
+                <SelectTypeModule />
+                <SelectRegionModule />
+            </NavMobile>
         </NavLayout>
         <main>
             <Loader v-if="DataLocal.length === 0"/>
             <template v-else-if="isError()">
-                {{ ErrorLocal }}
+                <ErrorShow :error="ErrorLocal"/>
             </template>
             <template v-else>
                 <WrapperLayout>
@@ -38,8 +39,10 @@
     import SelectTypeModule from './SelectTypeModule.vue';
     import SelectRegionModule from './SelectRegionModule.vue';
     import WrapperLayout from '../layout/Wrapper/WrapperLayout.vue';
-    import Loader from '../components/Loaders/Loader.vue'
+    import Loader from '../components/Loaders/Loader.vue';
+    import ErrorShow from '../components/Loaders/ErrorShow.vue';
     import PokemonCard from '../components/Cards/PokemonCard.vue';
+    import NavMobile from '../layout/Nav/NavMobile.vue';
 
     import { useGetPokemon } from '../composables/useGetPokemon';
 
@@ -48,8 +51,21 @@
     const isError = () => ErrorLocal.value instanceof Error;
 </script>
 <styles lang='scss' scoped>
+    .Main{
+        position: relative;
+    }
     .Main-select{
         display: flex;
         gap: .625rem;
+    }
+    .Main-nav{
+        position: sticky;
+        top: 0;
+    }
+
+    @media screen and (max-width: 860px){
+        .Main-media{
+            display: none;
+        }   
     }
 </styles>

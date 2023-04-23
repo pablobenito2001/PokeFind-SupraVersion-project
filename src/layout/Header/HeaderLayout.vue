@@ -40,7 +40,7 @@
         user-select: none;
         color: var(--white);
         &-title{
-            font-size: clamp(4em, 10vw, 7em);
+            font-size: clamp(3.5em, 10vw, 7em);
             line-height: .8em;
             font-weight: bold;
             text-align: center;
@@ -53,7 +53,7 @@
         }
         &-caption{
             font-family: var(--secundary);
-            font-size: 1.7em;
+            font-size: clamp(1em, 1.7vw, 1.7em);
         }
     }
 

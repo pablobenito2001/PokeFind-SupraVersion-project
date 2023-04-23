@@ -1,5 +1,5 @@
 <template>
-    <div class="Select">
+    <div class="Select" :class="$attrs.class">
         <button class="Select-button" @click="() => open = !open"><slot name="name"/></button>
         <transition name="slide-fade">
             <div class="Select-container" v-if="open">
@@ -63,9 +63,6 @@
             height: 100vh;
             width: 100%;
             cursor: pointer;
-        }
-        @media screen and (max-width: 860px) {
-            display: none;
         }
     }
 

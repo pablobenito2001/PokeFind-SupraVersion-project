@@ -10,6 +10,8 @@ export default {
         return fetch(`https://pokeapi.co/api/v2/pokemon${ end }`)
         .then(json => json.json())
         .then(elem => UnwrapData(elem.results) as T)
-        .catch(e => e.message)
+        .catch(e => {
+            throw new Error(e)
+        })
     }
 }

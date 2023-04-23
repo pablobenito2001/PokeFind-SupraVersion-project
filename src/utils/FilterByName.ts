@@ -8,6 +8,6 @@ export const FilterByName = (elem: PokemonInterface[], keyName: string): Pokemon
     if(res.length !== 0){
         return res
     }else{
-        throw new Error('ips')
+        throw new Error('Pokemon name not found.')
     }
 }

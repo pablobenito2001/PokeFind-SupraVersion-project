@@ -1,5 +1,5 @@
 <template>
-    <div class="Search">
+    <div class="Search" :class="$attrs.class">
         <label :for="id" class="Seach-label"><slot /></label>
         <input type="search" :id="id" placeholder="Input a pokemon name" class="Search-input" maxlength="25" @input="emitValue($event)">
     </div>
@@ -22,7 +22,9 @@
 </script>
 <styles lang='scss' scoped>
     .Search{
-        min-width: 25rem;
+        min-width: 15.625rem;
+        max-width: 28.125rem;
+        width: 100%;
         font-family: var(--secundary);
         &-input{
             width: 100%;
@@ -39,9 +41,6 @@
         }
         &-label{
             display: none;
-        }
-        @media screen and (max-width: 860px) {
-            opacity: 0;
         }
     }
 </styles>

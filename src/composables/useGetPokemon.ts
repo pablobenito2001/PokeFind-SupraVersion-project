@@ -1,6 +1,5 @@
 import { ref, watch } from "vue"
 import API from "../services/API";
-import type { Ref } from "vue";
 import type PokemonInterface from "../interfaces/PokemonInterface";
 import { FilterByName } from '../utils/FilterByName'
 
@@ -20,21 +19,20 @@ const regions: object = {
 export const useGetPokemon = () => {
     const NameKey = ref<string>('');
     const TypeKey = ref<string>('all');
-    const RegionKey = ref<string>('alola');
+    const RegionKey = ref<string>('kalos');
     const DataLocal = ref<PokemonInterface[]>([]);
     const DataClone = ref<PokemonInterface[]>([]);
-    const ErrorLocal = ref<Error | null | string>(null);
+    const ErrorLocal = ref<Error | null>(null);
 
     (async () => {
         try{
+            ErrorLocal.value = null;
             const res = await API.fetchPokemonRegion<PokemonInterface[]>(regions[RegionKey.value]);
             DataLocal.value = res;
             DataClone.value = res;
         }catch(e){
             console.error(e);
-            if (typeof e === "string") {
-                ErrorLocal.value = e.toUpperCase();
-            } else if (e instanceof Error) {
+            if (e instanceof Error) {
                 ErrorLocal.value = e
             }
         }
@@ -45,9 +43,7 @@ export const useGetPokemon = () => {
             ErrorLocal.value = null;
             DataLocal.value = FilterByName(DataClone.value, NameKey.value)
         }catch(e){
-            if (typeof e === "string") {
-                ErrorLocal.value = e.toUpperCase();
-            } else if (e instanceof Error) {
+            if(e instanceof Error){
                 ErrorLocal.value = e
             }
         }
