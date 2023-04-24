@@ -3,7 +3,7 @@
         <button class="Select-button" @click="() => open = !open"><slot name="name"/></button>
         <transition name="slide-fade">
             <div class="Select-container" v-if="open">
-                <ul class="Select-options">
+                <ul class="Select-options" @click="() => open = !open">
                     <slot name="content"/>
                 </ul>
             </div>

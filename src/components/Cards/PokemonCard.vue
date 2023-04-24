@@ -6,7 +6,7 @@
         <div class="PokeCard-data">
             <div>
                 <span class="PokeCard-dex">N°{{ props.id }}</span>
-                <h3 class="PokeCard-name">{{ props.name }}</h3>
+                <h3 class="PokeCard-name" :title="props.name">{{ props.name }}</h3>
             </div>
             <div class="PokeCard-typesBox">
                 <img 
@@ -50,7 +50,7 @@
         ice: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048227/Pokemon-Types/ice_jr3qsp.png',
         poison: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048227/Pokemon-Types/poison_ecusun.png',
         rock: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048227/Pokemon-Types/rock_byynbp.png',
-        fighting: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048227/Pokemon-Types/rock_byynbp.png'
+        fighting: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048228/Pokemon-Types/fighting_crpadb.png'
     }
 </script>
 <styles lang='scss' scoped>
@@ -62,6 +62,7 @@
         box-shadow: var(--box-shadow);
         border-radius: .3125rem;
         cursor: pointer;
+        transition: box-shadow 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
         &-sprite{
             min-width: 9.375rem;
             filter: grayscale(100%);
@@ -84,7 +85,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            font-size: clamp(2em, 2.5vw, 2.5em);
+            font-size: clamp(1.5em, 2.5vw, 2.5em);
             font-weight: bold;
             color: var(--grey);
         }
@@ -99,6 +100,9 @@
         }
         &:hover .PokeCard-sprite{
             filter: unset;
+        }
+        &:hover{
+            box-shadow: var(--box-shadow-hover);
         }
     }
 </styles>

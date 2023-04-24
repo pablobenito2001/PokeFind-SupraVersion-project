@@ -3,10 +3,10 @@
         <NavLayout class="Main-nav">
             <SearchInput id="searcher" v-model.trim="NameKey" class="Main-media"/>
             <div class="Main-select">
-                <SelectTypeModule class="Main-media"/>
+                <SelectTypeModule class="Main-media" @select-type="(value: string) => TypeKey = value"/>
                 <SelectRegionModule class="Main-media"/>
             </div>
-            <NavMobile>
+            <NavMobile >
                 <SearchInput id="searcher" v-model.trim="NameKey"/>
                 <SelectTypeModule />
                 <SelectRegionModule />
@@ -46,9 +46,10 @@
 
     import { useGetPokemon } from '../composables/useGetPokemon';
 
-    const { DataLocal, ErrorLocal, NameKey } = useGetPokemon();
+    const { DataLocal, ErrorLocal, NameKey, TypeKey } = useGetPokemon();
 
     const isError = () => ErrorLocal.value instanceof Error;
+
 </script>
 <styles lang='scss' scoped>
     .Main{

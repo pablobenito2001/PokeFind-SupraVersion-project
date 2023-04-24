@@ -17,6 +17,7 @@
     --gap-cards: 1.25rem;
     --gap-element: 1.25rem;
     --box-shadow: 3px 3px 10px var(--input-active);
+    --box-shadow-hover: 7px 7px 10px var(--input-active);
 }
 
 * {

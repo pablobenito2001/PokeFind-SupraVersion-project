@@ -1,7 +1,7 @@
 <template>
     <HeaderLayout>
         <template #caption>
-            <h3>Gotta catch'em all!</h3>
+            <h3>Find your favorite pokemon.</h3>
         </template>
     </HeaderLayout>
     <WrapperModule />

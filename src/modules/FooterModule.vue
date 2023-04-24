@@ -4,11 +4,25 @@
             <h2>Poke</h2>
             <h2>Find</h2>
         </div>
-        <div class="Footer-code">
-            <h4 class="Footer-title">Code on GitHub:</h4>
+        <div>
+            <h4 class="Footer-title">View the code:</h4>
             <ul class="Footer-text">
                 <li>
                     <a href="https://github.com/pablobenito2001/PokeFind-SupraVersion" rel="noopener external">GitHub</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="Footer-title">My Social Media:</h4>
+            <ul>
+                <li class="Footer-text">
+                    <a href="https://github.com/pablobenito2001" rel="noopener external">GitHub</a>
+                </li>
+                <li class="Footer-text">
+                    <a href="https://www.linkedin.com/in/pablo-benito-53610b222/" rel="noopener external">Linkedin</a>
+                </li>
+                <li class="Footer-text">
+                    <a href="https://github.com/pablobenito2001" rel="noopener external">Twitter</a>
                 </li>
             </ul>
         </div>
@@ -19,9 +33,9 @@
 </script>
 <style lang="scss" scoped>
     .Footer{
-        color: var(--white);
+        color: var(--grey);
         &-title{
-            font-size: 1.5em;
+            font-size: 2em;
             font-weight: bold;
         }
         &-name{
@@ -32,6 +46,10 @@
         &-text{
             font-family: var(--secundary);
             font-size: 1.2em;
+            transition: color 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+            &:hover{
+                color: var(--black);
+            }
         }
     }
 </style>
