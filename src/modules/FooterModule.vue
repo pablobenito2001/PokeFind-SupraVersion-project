@@ -8,7 +8,7 @@
             <h4 class="Footer-title">View the code:</h4>
             <ul class="Footer-text">
                 <li>
-                    <a href="https://github.com/pablobenito2001/PokeFind-SupraVersion" rel="noopener external">GitHub</a>
+                    <a href="https://github.com/pablobenito2001/PokeFind-SupraVersion" rel="noopener external" target="_blank">GitHub</a>
                 </li>
             </ul>
         </div>
@@ -16,13 +16,13 @@
             <h4 class="Footer-title">My Social Media:</h4>
             <ul>
                 <li class="Footer-text">
-                    <a href="https://github.com/pablobenito2001" rel="noopener external">GitHub</a>
+                    <a href="https://github.com/pablobenito2001" rel="noopener external" target="_blank">GitHub</a>
                 </li>
                 <li class="Footer-text">
-                    <a href="https://www.linkedin.com/in/pablo-benito-53610b222/" rel="noopener external">Linkedin</a>
+                    <a href="https://www.linkedin.com/in/pablo-benito-53610b222/" rel="noopener external" target="_blank">Linkedin</a>
                 </li>
                 <li class="Footer-text">
-                    <a href="https://github.com/pablobenito2001" rel="noopener external">Twitter</a>
+                    <a href="https://github.com/pablobenito2001" rel="noopener external" target="_blank">Twitter</a>
                 </li>
             </ul>
         </div>

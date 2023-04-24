@@ -25,21 +25,7 @@ export const useGetPokemon = () => {
     const DataClone = ref<PokemonInterface[]>([]);
     const ErrorLocal = ref<Error | null>(null);
 
-    (async () => {
-        try{
-            ErrorLocal.value = null;
-            const res = await API.fetchPokemonRegion<PokemonInterface[]>(regions[RegionKey.value]);
-            DataLocal.value = res;
-            DataClone.value = res;
-        }catch(e){
-            console.error(e);
-            if (e instanceof Error) {
-                ErrorLocal.value = e
-            }
-        }
-    })()
-
-    watch([NameKey, TypeKey], () => {
+    function filterData(){
         try{
             ErrorLocal.value = null;
             DataLocal.value = FilterByName(DataClone.value, NameKey.value);
@@ -49,12 +35,43 @@ export const useGetPokemon = () => {
                 ErrorLocal.value = e
             }
         }
+    }
+
+    function resetData(){
+        NameKey.value = '';
+        TypeKey.value = 'all';
+    }
+
+    async function getData(){
+        DataClone.value.length = 0;
+        DataLocal.value.length = 0;
+        try{
+            ErrorLocal.value = null;
+            const res = await API.fetchPokemonRegion<PokemonInterface[]>(regions[RegionKey.value]);
+            DataLocal.value = [...res];
+            DataClone.value = [...res];
+        }catch(e){
+            console.error(e);
+            if (e instanceof Error) {
+                ErrorLocal.value = e
+            }
+        }
+    }
+    getData()
+
+    watch([NameKey, TypeKey, DataClone], () => {
+        filterData()
+    })
+
+    watch([RegionKey], () => {
+        getData()
     })
 
     return {
         DataLocal,
         ErrorLocal,
         NameKey,
-        TypeKey
+        TypeKey,
+        RegionKey
     }
 }

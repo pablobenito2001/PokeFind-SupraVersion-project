@@ -9,7 +9,10 @@ export default {
     fetchPokemonRegion: async <T>(end: string): Promise<T> => {
         return fetch(`https://pokeapi.co/api/v2/pokemon${ end }`)
         .then(json => json.json())
-        .then(elem => UnwrapData(elem.results) as T)
+        .then(elem => {
+            const poke = UnwrapData(elem.results) as unknown;
+            return poke as T;
+        })
         .catch(e => {
             throw new Error(e)
         })
