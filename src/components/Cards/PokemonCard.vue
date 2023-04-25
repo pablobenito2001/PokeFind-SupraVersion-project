@@ -85,7 +85,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            font-size: clamp(1.5em, 2.5vw, 2.5em);
+            font-size: clamp(1.8em, 2.5vw, 2.5em);
             font-weight: bold;
             color: var(--grey);
         }

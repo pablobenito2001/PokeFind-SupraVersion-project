@@ -13,6 +13,7 @@
         grid-auto-rows: 11.25rem;
         gap: var(--gap-cards);
         max-width: 87.5rem;
+        padding: 0 .625rem;
         margin: var(--gap-element) auto;
         min-height: calc(100vh - 25rem);
     }

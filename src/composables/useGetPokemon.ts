@@ -20,7 +20,7 @@ const regions: object = {
 export const useGetPokemon = () => {
     const NameKey = ref<string>('');
     const TypeKey = ref<string>('all');
-    const RegionKey = ref<string>('unova');
+    const RegionKey = ref<string>('kanto');
     const DataLocal = ref<PokemonInterface[]>([]);
     const DataClone = ref<PokemonInterface[]>([]);
     const ErrorLocal = ref<Error | null>(null);
