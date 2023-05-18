@@ -1,97 +1,97 @@
 [
     {
         "id": 0,
-        "name": "All",
+        "name": "all",
         "selected": true
     },
     {
         "id": 1,
-        "name": "Normal",
+        "name": "normal",
         "selected": false
     },
     {
         "id": 2,
-        "name": "Psychic",
+        "name": "psychic",
         "selected": false
     },
     {
         "id": 3,
-        "name": "Rock",
+        "name": "rock",
         "selected": false
     },
     {
         "id": 4,
-        "name": "Grass",
+        "name": "grass",
         "selected": false
     },
     {
         "id": 5,
-        "name": "Ground",
+        "name": "ground",
         "selected": false
     },
     {
         "id": 6,
-        "name": "Steel",
+        "name": "steel",
         "selected": false
     },
     {
         "id": 7,
-        "name": "Electric",
+        "name": "electric",
         "selected": false
     },
     {
         "id": 8,
-        "name": "Water",
+        "name": "water",
         "selected": false
     },
     {
         "id": 9,
-        "name": "Fire",
+        "name": "fire",
         "selected": false
     },
     {
         "id": 10,
-        "name": "Fairy",
+        "name": "fairy",
         "selected": false
     },
     {
         "id": 11,
-        "name": "Dark",
+        "name": "dark",
         "selected": false
     },
     {
         "id": 12,
-        "name": "Poison",
+        "name": "poison",
         "selected": false
     },
     {
         "id": 13,
-        "name": "Flying",
+        "name": "flying",
         "selected": false
     },
     {
         "id": 14,
-        "name": "Ghost",
+        "name": "ghost",
         "selected": false
     },
     {
         "id": 15,
-        "name": "Dragon",
+        "name": "dragon",
         "selected": false
     },
     {
         "id": 16,
-        "name": "Fighting",
+        "name": "fighting",
         "selected": false
     },
     {
         "id": 17,
-        "name": "Bug",
+        "name": "bug",
         "selected": false
     },
     {
         "id": 18,
-        "name": "Ice",
+        "name": "ice",
         "selected": false
     }
 ]

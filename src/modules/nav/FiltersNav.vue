@@ -1,21 +1,25 @@
 <template>
     <NavLayout>
-        <SearchInput @input="emitName" :value="name" class="Filter-search Filter-hidden"/>
+        <input type="search" @input="emitName" placeholder="Input a pokemon name" :value="name" class="Filter-search Filter-hidden" maxlength="25"/>
         <div class="Filter-box Filter-hidden">
-            <select @change="emitRegion" :value="region">
-                <option 
-                v-for="item in regions"
-                :key="item.id"
-                :value="item.name"
-                :selected="item.selected"
-                >{{ item.name }}</option>
-            </select>
-            <select @change="emitType" :value="type">
+            <span class="Filter-label">Type: </span>
+            <select @change="emitType" :value="type" class="Filter-select">
                 <option 
                 v-for="item in types"
                 :key="item.id"
                 :value="item.name"
                 :selected="item.selected"
+                class="Filter-option"
+                >{{ item.name }}</option>
+            </select>
+            <span class="Filter-label">Region: </span>
+            <select @change="emitRegion" :value="region" class="Filter-select">
+                <option 
+                v-for="item in regions"
+                :key="item.id"
+                :value="item.name"
+                :selected="item.selected"
+                class="Filter-option"
                 >{{ item.name }}</option>
             </select>
         </div>
@@ -25,27 +29,36 @@
         <Teleport to="body" v-if="open">
             <div class="Filter-modal">
                 <h3 class="Filter-title">Filters</h3>
-                <SearchInput @input="emitName" :value="name"/>
-                <button class="Filter-button Filter-button--primary">Clear Name</button>
-                <div class="Filter-box">
-                    <select @change="emitRegion" :value="region">
-                        <option 
-                        v-for="item in regions"
-                        :key="item.id"
-                        :value="item.name"
-                        :selected="item.selected"
-                        >{{ item.name }}</option>
-                    </select>
-                    <select @change="emitType" :value="type">
-                        <option 
-                        v-for="item in types"
-                        :key="item.id"
-                        :value="item.name"
-                        :selected="item.selected"
-                        >{{ item.name }}</option>
-                    </select>
+                <div class="Filter-container">
+                    <span class="Filter-label">By Name: </span>
+                    <input type="search" 
+                    @input="emitName" 
+                    placeholder="Input a pokemon name" 
+                    :value="name" 
+                    class="Filter-search" 
+                    maxlength="25"/>
+                    <div class="Filter-container">
+                        <span class="Filter-label">By Type: </span>
+                        <select @change="emitType" :value="type" class="Filter-select">
+                            <option 
+                            v-for="item in types"
+                            :key="item.id"
+                            :value="item.name"
+                            :selected="item.selected"
+                            >{{ item.name }}</option>
+                        </select>
+                        <span class="Filter-label">By Region: </span>
+                        <select @change="emitRegion" :value="region" class="Filter-select">
+                            <option 
+                            v-for="item in regions"
+                            :key="item.id"
+                            :value="item.name"
+                            :selected="item.selected"
+                            >{{ item.name }}</option>
+                        </select>
+                    </div>
+                    <button class="Filter-button Filter-button--exit" @click="() => open = !open">Close</button>
                 </div>
-                <button class="Filter-button Filter-button--exit" @click="() => open = !open">Close Filters</button>
             </div>
         </Teleport>
     </NavLayout>
@@ -54,7 +67,6 @@
     import { ref } from 'vue';
 
     import NavLayout from '../../layout/Nav/NavLayout.vue';
-    import SearchInput from '../../components/Input/SearchInput.vue';
 
     import { useGetLocalData } from '../../composables/useGetLocalData';
 
@@ -86,7 +98,7 @@
         (e: 'update:region', value: string): void
     }>()
 
-    function emitName(e: KeyboardEvent){
+    function emitName(e: Event){
         const elem = e.target as HTMLInputElement;
         const nameSelect = elem.value.toLocaleLowerCase();
         emit('update:name', nameSelect);
@@ -103,20 +115,50 @@
 <styles lang='scss' scoped>
     .Filter{
         &-search{
-            max-width: 450px;
-        }
-        &-select{
             width: 100%;
+            max-width: 450px;
+            padding: .9375rem 1.25rem;
+            border-radius: 6.25rem;
+            background-color: var(--input-primary);
+            font-family: var(--secundary);
+            transition: background-color 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+            &:hover{
+                background-color: var(--input-hover);
+            }
+            &:focus{
+                background-color: var(--input-active);
+            }
+            @media screen and (max-width: 860px){
+                background-color: var(--input-hover);
+                max-width: unset;
+            }
         }
-        &-box{
+        &-box{  
             display: flex;
             justify-content: center;
             align-items: center;
             gap: .9375rem;
-            @media screen and (max-width: 860px) {
-                flex-direction: column;
-                align-items: flex-start;
+        }
+        &-select{
+            width: 100%;
+            border: solid .1875rem var(--input-hover);
+            border-radius: .3125rem;
+            padding: .3125rem 1.25rem;
+            font-family: var(--secundary);
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+            &:hover{
+                background-color: var(--input-hover);
             }
+            @media screen and (max-width: 860px){
+                background-color: var(--input-hover);
+                text-align: left;
+            }
+        }
+        &-option{
+            text-transform: capitalize;
+            background-color: var(--white);
         }
         &-open{
             display: none;
@@ -136,13 +178,15 @@
             width: 100%;
             z-index: 3;
             padding: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            gap: .9375rem;
             background-color: var(--white);
             @media screen and (min-width: 860px) {
                 display: none;
             }
+        }
+        &-container{
+            display: flex;
+            flex-direction: column;
+            gap: .9375rem;
         }
         &-title{
             font-size: 3.3em;
