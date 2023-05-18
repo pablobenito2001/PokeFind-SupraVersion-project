@@ -15,6 +15,13 @@ url: https://pokefind-ruddy.vercel.app/
 - View Pokemon Stats
 - Create a Team
 
+## What I learned
+- Composable Vue
+- v-model directive 
+- TypeScript practice
+- Custom Emits
+- Consume api rest
+
 ### Built with
 - JavaScript
 - SCSS
