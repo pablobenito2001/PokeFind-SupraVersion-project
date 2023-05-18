@@ -1,42 +1,52 @@
 [   
     {
         "id": 0,
-        "name": "all"
+        "name": "all",
+        "selected": false
     },
     {
         "id": 1,
-        "name": "kanto"
+        "name": "kanto",
+        "selected": true
     },
     {
         "id": 2,
-        "name": "jotho"
+        "name": "jotho",
+        "selected": false
     },
     {
         "id": 3,
-        "name": "hoenn"
+        "name": "hoenn",
+        "selected": false
     },
     {
         "id": 4,
-        "name": "sinnoh"
+        "name": "sinnoh",
+        "selected": false
     },
     {
         "id": 5,
-        "name": "unova"
+        "name": "unova",
+        "selected": false
     },
     {
         "id": 6,
-        "name": "kalos"
+        "name": "kalos",
+        "selected": false
     },
     {
         "id": 7,
-        "name": "alola"
+        "name": "alola",
+        "selected": false
     },
     {
         "id": 8,
-        "name": "galar"
+        "name": "galar",
+        "selected": false
     },
     {
         "id": 9,
-        "name": "paldea"
+        "name": "paldea",
+        "selected": false
     }
 ]

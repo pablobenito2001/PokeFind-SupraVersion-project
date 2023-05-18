@@ -13,7 +13,6 @@
         border-bottom: solid 2px var(--input-active);
         padding: .3125rem;
         background-color: var(--white);
-        z-index: 2;
         &-container{
             display: flex;
             justify-content: space-between;

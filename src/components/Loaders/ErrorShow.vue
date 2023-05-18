@@ -22,10 +22,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         min-height: calc(100vh - 400px);
         &-image{
             max-width: 300px;
             height: auto;
+        }
+        &-message{
+            font-size: 2em;
         }
     }
 </style>

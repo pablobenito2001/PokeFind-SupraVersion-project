@@ -1,19 +1,9 @@
 <template>
     <div class="Main">
-        <NavLayout class="Main-nav Main-hide">
-            <SearchInput id="searcher" v-model.trim="NameKey"/>
-            <div class="Main-select">
-                <SelectTypeModule @select-type="(value: string) => TypeKey = value"/>
-                <SelectRegionModule @select-region="(value: string) => RegionKey = value"/>
-            </div>
-        </NavLayout>
-        <NavLayout class="Main-nav Main-show">
-            <SearchMobile id="Smobile" v-model.trim="NameKey"/>
-            <div class="Main-select">
-                <SelectTypeMobileModule @select-type="(value: string) => TypeKey = value"/>
-                <SelectRegionMobileModule @select-region="(value: string) => RegionKey = value"/>
-            </div>
-        </NavLayout>
+        <FiltersNav class="Main-nav" 
+        v-model:name="NameKey" 
+        v-model:type="TypeKey" 
+        v-model:region="RegionKey"/>
         <main>
             <Loader v-if="DataLocal.length === 0"/>
             <template v-else-if="isError()">
@@ -36,17 +26,11 @@
     </div>
 </template>
 <script lang='ts' setup>
-    import NavLayout from '../layout/Nav/NavLayout.vue';    
-    import SearchInput from '../components/Input/SearchInput.vue';
-    import SelectTypeModule from './SelectTypeModule.vue';
-    import SelectRegionModule from './SelectRegionModule.vue';
+    import FiltersNav from './nav/FiltersNav.vue';
     import WrapperLayout from '../layout/Wrapper/WrapperLayout.vue';
     import Loader from '../components/Loaders/Loader.vue';
     import ErrorShow from '../components/Loaders/ErrorShow.vue';
     import PokemonCard from '../components/Cards/PokemonCard.vue';
-    import SearchMobile from '../components/Input/SearchMobile.vue';
-    import SelectRegionMobileModule from './SelectRegionMobileModule.vue';
-    import SelectTypeMobileModule from './SelectTypeMobileModule.vue';
 
     import { useGetPokemon } from '../composables/useGetPokemon';
 
@@ -58,24 +42,10 @@
 <styles lang='scss' scoped>
     .Main{
         position: relative;
-    }
-    .Main-select{
-        display: flex;
-        gap: .625rem;
-    }
-    .Main-nav{
-        position: sticky;
-        top: 0;
-    }
-    .Main-hide{
-        @media screen and (max-width: 860px){
-            display: none;
-        }
-    }
-    .Main-show{
-        display: none;
-        @media screen and (max-width: 860px){
-            display: block;
+        &-nav{
+            position: sticky;
+            z-index: 2;
+            top: 0;
         }
     }
 </styles>

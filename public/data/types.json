@@ -1,78 +1,97 @@
 [
     {
         "id": 0,
-        "name": "All"
+        "name": "All",
+        "selected": true
     },
     {
         "id": 1,
-        "name": "Normal"
+        "name": "Normal",
+        "selected": false
     },
     {
         "id": 2,
-        "name": "Psychic"
+        "name": "Psychic",
+        "selected": false
     },
     {
         "id": 3,
-        "name": "Rock"
+        "name": "Rock",
+        "selected": false
     },
     {
         "id": 4,
-        "name": "Grass"
+        "name": "Grass",
+        "selected": false
     },
     {
         "id": 5,
-        "name": "Ground"
+        "name": "Ground",
+        "selected": false
     },
     {
         "id": 6,
-        "name": "Steel"
+        "name": "Steel",
+        "selected": false
     },
     {
         "id": 7,
-        "name": "Electric"
+        "name": "Electric",
+        "selected": false
     },
     {
         "id": 8,
-        "name": "Water"
+        "name": "Water",
+        "selected": false
     },
     {
         "id": 9,
-        "name": "Fire"
+        "name": "Fire",
+        "selected": false
     },
     {
         "id": 10,
-        "name": "Fairy"
+        "name": "Fairy",
+        "selected": false
     },
     {
         "id": 11,
-        "name": "Dark"
+        "name": "Dark",
+        "selected": false
     },
     {
         "id": 12,
-        "name": "Poison"
+        "name": "Poison",
+        "selected": false
     },
     {
         "id": 13,
-        "name": "Flying"
+        "name": "Flying",
+        "selected": false
     },
     {
         "id": 14,
-        "name": "Ghost"
+        "name": "Ghost",
+        "selected": false
     },
     {
         "id": 15,
-        "name": "Dragon"
+        "name": "Dragon",
+        "selected": false
     },
     {
         "id": 16,
-        "name": "Fighting"
+        "name": "Fighting",
+        "selected": false
     },
     {
         "id": 17,
-        "name": "Bug"
+        "name": "Bug",
+        "selected": false
     },
     {
         "id": 18,
-        "name": "Ice"
+        "name": "Ice",
+        "selected": false
     }
 ]
