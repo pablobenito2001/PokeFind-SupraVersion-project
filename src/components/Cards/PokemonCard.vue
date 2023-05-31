@@ -1,5 +1,5 @@
 <template>
-    <div class="PokeCard">
+    <div class="PokeCard" @click="log">
         <div class="PokeCard-sprite">
             <img :src="props.image" :alt="`${ props.image }' sprite'`" :title="`${ props.name } sprite`" loading="lazy">
         </div>
@@ -12,7 +12,7 @@
                 <img 
                 v-for="(item, index) in props.types"
                 :key="index"
-                :src="types[item]" 
+                :src="types[item]"
                 :alt="`${ item } type`"
                 :title="item"
                 class="PokeCard-type"
@@ -32,7 +32,7 @@
 
     const props = defineProps<Props>();
 
-    const types: Object = {
+    const types = {
         grass: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048228/Pokemon-Types/grass_of6ivc.png',
         fairy: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048228/Pokemon-Types/fairy_s0umzi.png',
         ghost: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048228/Pokemon-Types/ghost_acmbqh.png',
@@ -52,8 +52,12 @@
         rock: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048227/Pokemon-Types/rock_byynbp.png',
         fighting: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048228/Pokemon-Types/fighting_crpadb.png'
     }
+
+    function log(){
+        console.log(props.name);
+    }
 </script>
-<styles lang='scss' scoped>
+<style lang='scss' scoped>
     .PokeCard{
         display: flex;
         background-color: transparent;
@@ -105,4 +109,4 @@
             box-shadow: var(--box-shadow-hover);
         }
     }
-</styles>
+</style>
