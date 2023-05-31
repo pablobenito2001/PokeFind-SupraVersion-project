@@ -5,12 +5,10 @@
         v-model:type="TypeKey" 
         v-model:region="RegionKey"/>
         <main>
-            <Loader v-if="DataLocal.length === 0"/>
-            <template v-else-if="isError()">
-                <ErrorShow :error="ErrorLocal"/>
-            </template>
+            <ErrorShow :error="ErrorLocal" v-if="isError()"/>
             <template v-else>
-                <WrapperLayout>
+                <Loader v-if="DataLocal.length === 0"/>
+                <WrapperLayout v-else>
                     <PokemonCard 
                     v-for="item in DataLocal"
                     :key="item.id"
@@ -37,7 +35,7 @@
     const { DataLocal, ErrorLocal, NameKey, TypeKey, RegionKey } = useGetPokemon();
 
     const isError = () => ErrorLocal.value instanceof Error;
-
+    
 </script>
 <styles lang='scss' scoped>
     .Main{

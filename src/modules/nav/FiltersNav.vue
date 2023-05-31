@@ -1,9 +1,18 @@
 <template>
     <NavLayout>
-        <input type="search" @input="emitName" placeholder="Input a pokemon name" :value="name" class="Filter-search Filter-hidden" maxlength="25"/>
+        <input 
+        type="search" 
+        @input="emitName" 
+        placeholder="Input a pokemon name" 
+        :value="name" 
+        class="Filter-search Filter-hidden" 
+        maxlength="25"/>
         <div class="Filter-box Filter-hidden">
             <span class="Filter-label">Type: </span>
-            <select @change="emitType" :value="type" class="Filter-select">
+            <select 
+            @change="emitType" 
+            :value="type" 
+            class="Filter-select">
                 <option 
                 v-for="item in types"
                 :key="item.id"
@@ -13,7 +22,10 @@
                 >{{ item.name }}</option>
             </select>
             <span class="Filter-label">Region: </span>
-            <select @change="emitRegion" :value="region" class="Filter-select">
+            <select 
+            @change="emitRegion" 
+            :value="region" 
+            class="Filter-select">
                 <option 
                 v-for="item in regions"
                 :key="item.id"
@@ -26,9 +38,11 @@
         <button class="Filter-open" @click="() => open = !open">
             <svg xmlns="http://www.w3.org/2000/svg" height="45" viewBox="0 96 960 960" width="45" class="Filter-svg"><path d="M400 816v-60h160v60H400ZM240 606v-60h480v60H240ZM120 396v-60h720v60H120Z"/></svg>
         </button>
+        <!-- mobile mode -->
         <Teleport to="body" v-if="open">
             <div class="Filter-modal">
                 <h3 class="Filter-title">Filters</h3>
+
                 <div class="Filter-container">
                     <span class="Filter-label">By Name: </span>
                     <input type="search" 
@@ -37,9 +51,14 @@
                     :value="name" 
                     class="Filter-search" 
                     maxlength="25"/>
+
                     <div class="Filter-container">
+
                         <span class="Filter-label">By Type: </span>
-                        <select @change="emitType" :value="type" class="Filter-select">
+                        <select 
+                        @change="emitType" 
+                        :value="type" 
+                        class="Filter-select">
                             <option 
                             v-for="item in types"
                             :key="item.id"
@@ -47,8 +66,12 @@
                             :selected="item.selected"
                             >{{ item.name }}</option>
                         </select>
+
                         <span class="Filter-label">By Region: </span>
-                        <select @change="emitRegion" :value="region" class="Filter-select">
+                        <select 
+                        @change="emitRegion" 
+                        :value="region" 
+                        class="Filter-select">
                             <option 
                             v-for="item in regions"
                             :key="item.id"
@@ -65,9 +88,7 @@
 </template>
 <script lang='ts' setup>
     import { ref } from 'vue';
-
     import NavLayout from '../../layout/Nav/NavLayout.vue';
-
     import { useGetLocalData } from '../../composables/useGetLocalData';
 
     //selects

@@ -37,11 +37,6 @@ export const useGetPokemon = () => {
         }
     }
 
-    function resetData(){
-        NameKey.value = '';
-        TypeKey.value = 'all';
-    }
-
     async function getData(){
         DataClone.value.length = 0;
         DataLocal.value.length = 0;

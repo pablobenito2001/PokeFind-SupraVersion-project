@@ -1,7 +1,7 @@
 import PokemonInterface from "../interfaces/PokemonInterface";
 
 export async function UnwrapData(elem: any): Promise<PokemonInterface[]>{
-    return Promise.all(elem.map(async (elem: any): Promise<PokemonInterface> => {
+    return Promise.all(elem.map((elem: any): Promise<PokemonInterface> => {
         return fetch(elem.url)
         .then(json => json.json())
         .then(j => {
@@ -12,6 +12,9 @@ export async function UnwrapData(elem: any): Promise<PokemonInterface[]>{
                 image: j.sprites.front_default,
                 stats: j.stats
             }
+        })
+        .catch(e => {
+            throw new Error(e)
         })
     }))
 }
