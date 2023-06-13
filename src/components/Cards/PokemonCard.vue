@@ -12,7 +12,7 @@
                 <img 
                 v-for="(item, index) in props.types"
                 :key="index"
-                :src="types[item]"
+                :src="types[item]" 
                 :alt="`${ item } type`"
                 :title="item"
                 class="PokeCard-type"
@@ -57,7 +57,7 @@
         console.log(props.name);
     }
 </script>
-<style lang='scss' scoped>
+<styles lang='scss' scoped>
     .PokeCard{
         display: flex;
         background-color: transparent;
@@ -109,4 +109,4 @@
             box-shadow: var(--box-shadow-hover);
         }
     }
-</style>
+</styles>
