@@ -1,5 +1,5 @@
 <template>
-    <HeaderLayout>
+    <HeaderLayout v-once>
         <template #caption>
             <h3>Find your favorite pokemon.</h3>
         </template>

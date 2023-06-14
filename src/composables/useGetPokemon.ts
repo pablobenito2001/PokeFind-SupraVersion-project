@@ -43,22 +43,21 @@ export const useGetPokemon = (region: string) => {
     const errorLocal = ref<Error | null>(null);
     const loading = ref<boolean>(false);
 
-    async function getData(){
+    async function getData(to: string){
         loading.value = false;
         try{
-            const rawData: Awaited<Response> = await API.fetchPokemonRegion(chooseRegion(region));
+            const rawData: Awaited<Response> = await API.fetchPokemonRegion(chooseRegion(to));
             const dataJSON: Awaited<{ results: { name: string, url: string }[] }> = await rawData.json(); 
             const allPokemon: Awaited<PokemonResponse[]> = await API.fetchMultiplePokemon<PokemonResponse>(dataJSON.results);
             if(rawData.ok){
-                allPokemon.forEach(((poke: PokemonResponse, index: number) => {
-                    const newElement: PokemonInterface = {
+                fetchData.value = allPokemon.map(((poke: PokemonResponse, index: number) => {
+                    return {
                         name: poke.name,
                         image: poke.sprites.front_default,
                         types: poke.types.map((elem: any) => elem.type.name),
                         id: poke.id,
                         stats: poke.stats
                     };
-                    fetchData.value.push(newElement);
                 }));
                 loading.value = true;
             }else{
@@ -71,7 +70,7 @@ export const useGetPokemon = (region: string) => {
             }
         }
     }
-    getData()
+    getData(region)
 
     return {
         fetchData,

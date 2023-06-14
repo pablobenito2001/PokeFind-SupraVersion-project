@@ -12,7 +12,7 @@
     import icon from '../../assets/Loader.svg';
     
     interface Props{
-        error: Error | null;
+        error: Error | null | string;
     }
 
     const props = defineProps<Props>();

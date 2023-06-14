@@ -8,13 +8,14 @@
             <ErrorShow :error="errorLocal.message" v-if="errorLocal"/>
             <template v-else>
                 <Loader v-if="!loading"/>
+                <ErrorShow error="Pokemon not found" v-else-if="filterPokemon.length === 0"/>
                 <WrapperCards :data="filterPokemon" v-else/>
             </template>
         </main>
     </div>
 </template>
 <script lang='ts' setup>
-    import { ref, computed } from 'vue';
+    import { ref, computed, watch } from 'vue';
     import FiltersNav from './nav/FiltersNav.vue';
     import Loader from '../components/Loaders/Loader.vue';
     import ErrorShow from '../components/Loaders/ErrorShow.vue';
@@ -24,9 +25,9 @@
 
     const NameKey = ref<string>('');
     const TypeKey = ref<string>('all');
-    const RegionKey = ref<string>('kanto');
+    const RegionKey = ref<string>('paldea');
 
-    const { fetchData, errorLocal, loading } = useGetPokemon(RegionKey.value);
+    const { fetchData, errorLocal, loading, getData } = useGetPokemon(RegionKey.value);
 
     const filterPokemon = computed<PokemonInterface[]>(() => {
         const filterType = fetchData.value.filter((elem: PokemonInterface) => elem.types.some((type: string) => {
@@ -36,7 +37,10 @@
         const filterName = filterType.filter((elem: PokemonInterface) => elem.name.startsWith(NameKey.value));
 
         return filterName;
-    })
+    });
+
+    watch(() => RegionKey.value, 
+    () => getData(RegionKey.value))
 </script>
 <styles lang='scss' scoped>
     .Main{

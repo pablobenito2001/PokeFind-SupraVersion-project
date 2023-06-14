@@ -167,6 +167,7 @@
             padding: .3125rem 1.25rem;
             font-family: var(--secundary);
             text-align: center;
+            text-transform: capitalize;
             cursor: pointer;
             transition: background-color 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
             &:hover{
