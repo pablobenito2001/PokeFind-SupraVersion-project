@@ -12,7 +12,7 @@
                 <img 
                 v-for="(item, index) in props.types"
                 :key="index"
-                :src="types[item]" 
+                :src="typeMap.get(item)" 
                 :alt="`${ item } type`"
                 :title="item"
                 class="PokeCard-type"
@@ -23,6 +23,7 @@
 </template>
 <script lang='ts' setup>
     import { router } from '../../router/router';
+    import { typeMap } from '../../utils/TypeMap';
 
     interface Props{
         name: string;
@@ -32,26 +33,6 @@
     }
 
     const props = defineProps<Props>();
-    const types = {
-        grass: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048228/Pokemon-Types/grass_of6ivc.png',
-        fairy: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048228/Pokemon-Types/fairy_s0umzi.png',
-        ghost: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048228/Pokemon-Types/ghost_acmbqh.png',
-        fire: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048228/Pokemon-Types/fire_unxz8o.png',
-        flying: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048228/Pokemon-Types/flying_gl4xv5.png',
-        dragon: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048228/Pokemon-Types/dragon_dkn0nq.png',
-        dark: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048228/Pokemon-Types/dark_g8pr1m.png',
-        psychic: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048227/Pokemon-Types/psychic_cwlpc5.png',
-        electric: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048227/Pokemon-Types/electric_izhtnf.png',
-        bug: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048227/Pokemon-Types/bug_xnoceu.png',
-        water: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048227/Pokemon-Types/water_vw247n.png',
-        steel: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048227/Pokemon-Types/steel_is6kay.png',
-        normal: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048227/Pokemon-Types/normal_o15fbf.png',
-        ground: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048227/Pokemon-Types/ground_tbmlgh.png',
-        ice: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048227/Pokemon-Types/ice_jr3qsp.png',
-        poison: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048227/Pokemon-Types/poison_ecusun.png',
-        rock: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048227/Pokemon-Types/rock_byynbp.png',
-        fighting: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048228/Pokemon-Types/fighting_crpadb.png'
-    }
 </script>
 <styles lang='scss' scoped>
     .PokeCard{

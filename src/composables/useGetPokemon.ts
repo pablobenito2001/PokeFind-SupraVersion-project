@@ -40,7 +40,8 @@ export const useGetPokemon = (id: number | string) => {
                 throw new Error('Something went wrong' + rawData.status + ' ' + rawData.statusText);
             }
         } catch (e) {
-            
+            console.error(e)
+            if(e instanceof Error) error.value = e
         }
     }
 

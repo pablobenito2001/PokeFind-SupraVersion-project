@@ -133,7 +133,7 @@
         emit('update:type', elem.value.toLocaleLowerCase());
     }
 </script>
-<styles lang='scss' scoped>
+<style lang='scss' scoped>
     .Filter{
         &-search{
             width: 100%;
@@ -242,4 +242,4 @@
             }
         }
     }
-</styles>
+</style>
