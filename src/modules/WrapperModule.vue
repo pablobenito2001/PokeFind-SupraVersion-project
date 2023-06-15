@@ -25,7 +25,7 @@
 
     const NameKey = ref<string>('');
     const TypeKey = ref<string>('all');
-    const RegionKey = ref<string>('paldea');
+    const RegionKey = ref<string>('kanto');
 
     const { fetchData, errorLocal, loading, getData } = useGetPokemon(RegionKey.value);
 

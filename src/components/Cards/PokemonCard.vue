@@ -19,15 +19,9 @@
                 >
             </div>
         </div>
-        <Teleport to="body">
-            <div class="PokeCard-modal" v-if="open" @click.self="() => open = false">
-                <modalStats :sprite="props.image" :stats="props.stats"/>
-            </div>
-        </Teleport>
     </div>
 </template>
 <script lang='ts' setup>
-    import { defineAsyncComponent, ref } from 'vue';
     import Loader from '../Loaders/Loader.vue';
     import ErrorShow from '../Loaders/ErrorShow.vue';
 
@@ -40,14 +34,6 @@
     }
 
     const props = defineProps<Props>();
-    const open = ref<boolean>(false);
-    const modalStats = defineAsyncComponent({
-        loader: () => import('../Modal/ModalStats.vue'),
-        loadingComponent: Loader,
-        delay: 200,
-        errorComponent: ErrorShow,
-        timeout: 3000
-    });
     const types = {
         grass: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048228/Pokemon-Types/grass_of6ivc.png',
         fairy: 'https://res.cloudinary.com/dxagsphno/image/upload/v1671048228/Pokemon-Types/fairy_s0umzi.png',
@@ -113,18 +99,6 @@
         }
         &-type{
             max-width: 3.125rem;
-        }
-        &-modal{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            min-width: 100%;
-            background-color: var(--alpha);
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 3;
         }
         &:hover .PokeCard-sprite{
             filter: unset;
