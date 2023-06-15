@@ -1,5 +1,5 @@
 <template>
-    <div class="PokeCard" @click="() => open = true">
+    <div class="PokeCard" @click="router.push({ path: `/${ props.id }` })">
         <div class="PokeCard-sprite">
             <img :src="props.image" :alt="`${ props.image }' sprite'`" :title="`${ props.name } sprite`" loading="lazy">
         </div>
@@ -22,15 +22,13 @@
     </div>
 </template>
 <script lang='ts' setup>
-    import Loader from '../Loaders/Loader.vue';
-    import ErrorShow from '../Loaders/ErrorShow.vue';
+    import { router } from '../../router/router';
 
     interface Props{
         name: string;
         id: number;
         types: string[];
         image: string;
-        stats: Object;
     }
 
     const props = defineProps<Props>();

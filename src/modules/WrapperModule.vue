@@ -20,23 +20,24 @@
     import Loader from '../components/Loaders/Loader.vue';
     import ErrorShow from '../components/Loaders/ErrorShow.vue';
     import WrapperCards from './WrapperCards.vue';
-    import PokemonInterface from '../interfaces/PokemonInterface';
-    import { useGetPokemon } from '../composables/useGetPokemon';
+    import Pokemon from '../interfaces/Pokemon';
+    import { useGetPokemonList } from '../composables/useGetPokemonList';
+
+    type PokemonCard = Omit<Pokemon, 'height' | 'weight' | 'stats' | 'abilities'>;
 
     const NameKey = ref<string>('');
     const TypeKey = ref<string>('all');
     const RegionKey = ref<string>('kanto');
+    const { fetchData, errorLocal, loading, getData } = useGetPokemonList(RegionKey.value);
 
-    const { fetchData, errorLocal, loading, getData } = useGetPokemon(RegionKey.value);
+    const filterPokemon = computed<PokemonCard[]>(() => {
+        let finalReturn: PokemonCard[] = [...fetchData.value];
+        if(TypeKey.value !== 'all'){
+            finalReturn = fetchData.value.filter((elem: PokemonCard) => elem.types.some((type: string) => type === TypeKey.value));
+        }
+        finalReturn = finalReturn.filter((elem: PokemonCard) => elem.name.startsWith(NameKey.value));
 
-    const filterPokemon = computed<PokemonInterface[]>(() => {
-        const filterType = fetchData.value.filter((elem: PokemonInterface) => elem.types.some((type: string) => {
-            if(TypeKey.value !== 'all') return type === TypeKey.value
-            else return -1
-        }));
-        const filterName = filterType.filter((elem: PokemonInterface) => elem.name.startsWith(NameKey.value));
-
-        return filterName;
+        return finalReturn;
     });
 
     watch(() => RegionKey.value, 

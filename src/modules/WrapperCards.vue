@@ -7,7 +7,6 @@
         :id="item.id"
         :image="item.image"
         :types="item.types"
-        :stats="item.stats"
         />
     </WrapperLayout>
 </template>
@@ -21,7 +20,6 @@
             name: string,
             image: string,
             types: string[],
-            stats: any
         }[]
     }
 

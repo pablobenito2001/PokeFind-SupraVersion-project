@@ -1,9 +1,9 @@
-<template>
-    <Home />
-</template>
 <script lang='ts' setup>
-    import Home from './views/Home.vue';
+    
 </script>
+<template>
+    <RouterView />
+</template>
 <styles lang='scss' scoped>
 :root{
     --gap: 1.5625rem;

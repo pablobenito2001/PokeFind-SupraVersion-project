@@ -9,5 +9,8 @@ export default {
     },
     fetchMultiplePokemon: <T>(pokemon: { name: string, url: string }[]): Promise<T[]> => {
         return Promise.all(pokemon.map((elem: { name: string, url: string }) => fetch(elem.url).then((elem: Response) => elem.json())))
+    },
+    fetchSinglePokemon: (id: string | number) => {
+        return fetch(`https://pokeapi.co/api/v2/pokemon/${ id }`);
     }
 }

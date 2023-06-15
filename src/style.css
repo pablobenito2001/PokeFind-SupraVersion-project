@@ -15,11 +15,14 @@
     --principal: 'Mulish', sans-serif;
     --secundary: 'Space Mono', monospace;
     /* Global */
-    --padding-card: .625rem;
-    --gap-cards: 1.25rem;
-    --gap-element: 1.25rem;
     --box-shadow: 3px 3px 10px var(--input-active);
     --box-shadow-hover: 7px 7px 10px var(--input-active);
+    /* size */
+    --max-width: 87.5rem;
+    --margin: 1.25rem;
+    --padding: 1.25rem;
+    --padding-card: .625rem;
+    --gap-cards: 1.25rem;
 }
 
 * {

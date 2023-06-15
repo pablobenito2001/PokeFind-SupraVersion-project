@@ -1,81 +1,55 @@
-import { ref } from "vue"
+import { ref, Ref } from "vue"; 
 import API from "../services/API";
-import type PokemonInterface from "../interfaces/PokemonInterface";
+import type Pokemon from "../interfaces/Pokemon";
 
-function chooseRegion(region: string){
-    switch(region){
-        case 'all': 
-            return '?offset=0&limit=1008';
-        case 'kanto':
-            return '?offset=0&limit=151';
-        case 'jotho':
-            return '?offset=151&limit=100';
-        case 'hoenn': 
-            return '?offset=251&limit=135';
-        case 'sinnoh': 
-            return '?offset=386&limit=107';
-        case 'unova':
-            return '?offset=493&limit=156';
-        case 'kalos':
-            return '?offset=649&limit=72';
-        case 'alola': 
-            return '?offset=721&limit=88';
-        case 'galar': 
-            return '?offset=809&limit=96';
-        case 'paldea':
-            return '?offset=905&limit=103';
-        default: 
-            return ''
-    }
-}
+export const useGetPokemon = (id: number | string) => {
+    const pokemon: Ref<Pokemon> = ref<Pokemon | null>() as Ref<Pokemon>;
+    const error: Ref<Error | null> = ref<Error | null>(null) as Ref<Error>;
+    const loader: Ref<boolean> = ref<boolean>(false);
 
+    const getPokemon = async (id: string | number) => {
+        try {
+            loader.value = false;
 
-type PokemonResponse = {
-    id: number;
-    sprites: any;
-    stats: any[];
-    types: any[];
-    name: string;
-}
-
-export const useGetPokemon = (region: string) => {
-    const fetchData = ref<PokemonInterface[]>([]);
-    const errorLocal = ref<Error | null>(null);
-    const loading = ref<boolean>(false);
-
-    async function getData(to: string){
-        loading.value = false;
-        try{
-            const rawData: Awaited<Response> = await API.fetchPokemonRegion(chooseRegion(to));
-            const dataJSON: Awaited<{ results: { name: string, url: string }[] }> = await rawData.json(); 
-            const allPokemon: Awaited<PokemonResponse[]> = await API.fetchMultiplePokemon<PokemonResponse>(dataJSON.results);
+            const rawData: Awaited<Response> = await API.fetchSinglePokemon(id);
+            const data: Awaited<any> = await rawData.json();
             if(rawData.ok){
-                fetchData.value = allPokemon.map(((poke: PokemonResponse, index: number) => {
-                    return {
-                        name: poke.name,
-                        image: poke.sprites.front_default,
-                        types: poke.types.map((elem: any) => elem.type.name),
-                        id: poke.id,
-                        stats: poke.stats
-                    };
-                }));
-                loading.value = true;
+                const formater = {
+                    name: data.species.name,
+                    id: data.id,
+                    types: data.types.map((elem: any) => elem.type.name),
+                    image: data.sprites.front_default,
+                    height: data.height,
+                    weight: data.weight,
+                    stats: data.stats.map((elem: any) => {
+                        return {
+                            name: elem.stat.name,
+                            base_stat: elem.base_stat
+                        }
+                    }),
+                    abilities: data.abilities.map((elem: any) => {
+                        return {
+                            name: elem.ability.name,
+                            is_hidden: elem.is_hidden
+                        }
+                    })
+                };
+                pokemon.value = formater;
+                loader.value = true;
             }else{
                 throw new Error('Something went wrong' + rawData.status + ' ' + rawData.statusText);
             }
-        }catch(e){
-            console.error(e);
-            if (e instanceof Error) {
-                errorLocal.value = e
-            }
+        } catch (e) {
+            
         }
     }
-    getData(region)
+
+    getPokemon(id);
 
     return {
-        fetchData,
-        errorLocal,
-        loading,
-        getData
+        pokemon, 
+        error,
+        loader,
+        getPokemon
     }
 }
