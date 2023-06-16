@@ -1,7 +1,7 @@
 <template>
     <template v-if="!error">
         <Loader v-if="!loader"/>
-        <PokemonLayout v-else>
+        <template v-else>
             <PokemonHeader 
             :name="pokemon.name" 
             :id="pokemon.id" 
@@ -10,15 +10,16 @@
             :abilities="pokemon.abilities" 
             :height="pokemon.height" 
             :weight="pokemon.weight"/>
-        </PokemonLayout>
+            <PokemonStats :stats="pokemon.stats"/>
+        </template>
     </template>
     <ErrorShow v-else :error="error.message"/>
 </template>
 <script lang='ts' setup>
     import Loader from '../../components/Loaders/Loader.vue';
     import ErrorShow from '../../components/Loaders/ErrorShow.vue';
-    import PokemonLayout from '../../layout/Pokemon/PokemonLayout.vue';
     import PokemonHeader from './PokemonHeader.vue';
+    import PokemonStats from './PokemonStats.vue';
 
     import { useGetPokemon } from '../../composables/useGetPokemon';
     import { useRoute } from 'vue-router';

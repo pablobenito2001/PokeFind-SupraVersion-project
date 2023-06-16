@@ -1,39 +1,41 @@
 <template>
-    <header class="HeaderPokemon">
-        <div>
-            <img :src="props.sprite" :alt="`${ props.name } sprite`" class="HeaderPokemon-sprite">
-        </div>
-        <div>
-            <span class="HeaderPokemon-text">Nro°{{ props.id }}</span>
-            <h2 class="HeaderPokemon-text HeaderPokemon-name">{{ props.name }}</h2>
-            <div>
-                <div> 
-                    <img 
-                    v-for="(item, index) in props.types"
-                    :key="index"
-                    :src="typeMap.get(item)" 
-                    :alt="item"
-                    :title="item"
-                    class="HeaderPokemon-type">
-                </div>
-                <div class="HeaderPokemon-info">
-                    <span class="HeaderPokemon-text HeaderPokemon-subtitle">Abilities:</span>
-                    <div class="HeaderPokemon-grid">
-                        <div
-                        v-for="(item, index) in props.abilities"
+    <header class="HeaderPokemon" v-once>
+        <div class="HeaderPokemon-container">
+            <div class="HeaderPokemon-content">
+                <img :src="props.sprite" :alt="`${ props.name } sprite`" class="HeaderPokemon-sprite">
+            </div>
+            <div class="HeaderPokemon-content">
+                <span class="HeaderPokemon-text">Nro°{{ props.id }}</span>
+                <h2 class="HeaderPokemon-text HeaderPokemon-name">{{ props.name }}</h2>
+                <div>
+                    <div class="HeaderPokemon-info"> 
+                        <img 
+                        v-for="(item, index) in props.types"
                         :key="index"
-                        class="HeaderPokemon-abilitie HeaderPokemon-text"
-                        :class="{ 'HeaderPokemon-abilitie--hidden': item.is_hidden }"
-                        >{{ item.name }}</div>
+                        :src="typeMap.get(item)" 
+                        :alt="item"
+                        :title="item"
+                        class="HeaderPokemon-type">
                     </div>
-                </div>
-                <div class="HeaderPokemon-info">
-                    <span class="HeaderPokemon-text HeaderPokemon-subtitle">Weight:</span>
-                    <div class="HeaderPokemon-text">{{ props.weight }}kg</div>
-                </div>
-                <div class="HeaderPokemon-info">
-                    <span class="HeaderPokemon-text HeaderPokemon-subtitle">Height:</span>
-                    <div class="HeaderPokemon-text">{{ props.height }}m</div>
+                    <div class="HeaderPokemon-info">
+                        <span class="HeaderPokemon-text HeaderPokemon-subtitle">Abilities:</span>
+                        <div class="HeaderPokemon-grid">
+                            <div
+                            v-for="(item, index) in props.abilities"
+                            :key="index"
+                            class="HeaderPokemon-abilitie HeaderPokemon-text"
+                            :class="{ 'HeaderPokemon-abilitie--hidden': item.is_hidden }"
+                            >{{ item.name }}</div>
+                        </div>
+                    </div>
+                    <div class="HeaderPokemon-info">
+                        <span class="HeaderPokemon-text HeaderPokemon-subtitle">Weight:</span>
+                        <div class="HeaderPokemon-text">{{ props.weight }}kg</div>
+                    </div>
+                    <div class="HeaderPokemon-info">
+                        <span class="HeaderPokemon-text HeaderPokemon-subtitle">Height:</span>
+                        <div class="HeaderPokemon-text">{{ props.height }}m</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -56,10 +58,19 @@
 </script>
 <style lang='scss' scoped>
     .HeaderPokemon{
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(min(31.25rem, 100%), 1fr));
-        grid-auto-rows: auto;
-        gap: .9375rem;
+        width: 100%;
+        border-bottom: solid 2px var(--input-active);
+        &-container{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+            grid-auto-rows: auto;
+            gap: .9375rem;
+            max-width: var(--max-width);
+            margin: auto;
+        }
+        &-content{
+            padding: 0 .625rem;
+        }
         &-text{
             line-height: 100%;
             font-weight: 600;
@@ -83,7 +94,7 @@
         &-type{
             max-width: 60px;
             display: inline-block;
-            margin: 0 10px 0 0;
+            margin: 0 .3125rem 0 0;
         }
         &-abilitie{
             display: flex;
