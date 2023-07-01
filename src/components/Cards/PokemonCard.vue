@@ -35,10 +35,12 @@
     const props = defineProps<Props>();
 </script>
 <styles lang='scss' scoped>
+    $box-shadow: rgb(218, 218, 218);
+
     .PokeCard{
         display: flex;
         background-color: transparent;
-        border: solid 2px var(--input-active);
+        border: solid 2px var(--alpha-grey);
         padding: var(--padding-card);
         box-shadow: var(--box-shadow);
         border-radius: .3125rem;

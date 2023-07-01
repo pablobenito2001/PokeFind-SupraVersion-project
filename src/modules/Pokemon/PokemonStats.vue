@@ -34,7 +34,11 @@
             width: 100%;
             margin: 5px 0 0 0;
             border-radius: 3.125rem;
-            &::-webkit-progress-bar {
+            overflow: hidden;
+            &::-webkit-progress-bar{
+                background-color: #dadada;
+            }
+            &::-webkit-progress-value{
                 background-color: var(--color);
                 border-radius: 3.125rem;
             }

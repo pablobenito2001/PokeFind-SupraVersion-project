@@ -1,16 +1,34 @@
-export default {
-    fetchingLocal: async <T>(url: string): Promise<T> => {
-        const json = await fetch(`/data/${url}.json`);
-        const elem = await json.json() as Promise<T>;
-        return elem
-    },
-    fetchPokemonRegion: (end: string): Promise<Response> => {
-        return fetch(`https://pokeapi.co/api/v2/pokemon${ end }`);
-    },
-    fetchMultiplePokemon: <T>(pokemon: { name: string, url: string }[]): Promise<T[]> => {
-        return Promise.all(pokemon.map((elem: { name: string, url: string }) => fetch(elem.url).then((elem: Response) => elem.json())))
-    },
-    fetchSinglePokemon: (id: string | number) => {
-        return fetch(`https://pokeapi.co/api/v2/pokemon/${ id }`);
-    }
+import { ResponseAPI } from "../interfaces/ResponseAPI";
+import { PokemonAPI } from "../interfaces/PokemonAPI";
+
+export function fetchPokemonRegion (end: string): Promise<ResponseAPI> {
+    return fetch(`https://pokeapi.co/api/v2/pokemon${ end }`)
+    .then((e: Response) => {
+        if(e.ok && e.status === 200){
+            return e.json();
+        }else{
+            throw new Error('Something went wrong ' + e.status + ' ' + e.statusText);
+        }
+    })
+    .then((e: ResponseAPI) => e)
+}
+
+export function fetchSinglePokemon (id: string | number): Promise<PokemonAPI> {
+    return fetch(`https://pokeapi.co/api/v2/pokemon/${ id }`)
+    .then((e: Response) => {
+        if(e.ok && e.status === 200){
+            return e.json();
+        }else{
+            throw new Error('Something went wrong ' + e.status + ' ' + e.statusText);
+        }
+    })
+    .then((e: PokemonAPI) => e)
+}
+
+export function fetchMultiplePokemon (results: ResponseAPI): Promise<PokemonAPI[]> {
+    const fetchList = results.results.map((elem: { name: string, url: string }) => {
+        return fetchSinglePokemon(elem.name)
+    });
+
+    return Promise.all(fetchList);
 }

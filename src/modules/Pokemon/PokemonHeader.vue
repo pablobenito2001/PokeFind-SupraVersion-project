@@ -59,7 +59,7 @@
 <style lang='scss' scoped>
     .HeaderPokemon{
         width: 100%;
-        border-bottom: solid 2px var(--input-active);
+        border-bottom: solid 2px var(--grey);
         &-container{
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
@@ -67,6 +67,7 @@
             gap: .9375rem;
             max-width: var(--max-width);
             margin: auto;
+            padding: var(--padding) 0;
         }
         &-content{
             padding: 0 .625rem;

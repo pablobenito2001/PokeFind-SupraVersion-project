@@ -5,7 +5,7 @@
         :key="item.id"
         :name="item.name"
         :id="item.id"
-        :image="item.image"
+        :image="item.sprite"
         :types="item.types"
         />
     </WrapperLayout>
@@ -18,7 +18,7 @@
         data: {
             id: number,
             name: string,
-            image: string,
+            sprite: string,
             types: string[],
         }[]
     }

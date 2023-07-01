@@ -1,6 +1,7 @@
 import { ref } from "vue"
-import API from "../services/API";
-import type Pokemon from "../interfaces/Pokemon";
+import { fetchMultiplePokemon, fetchPokemonRegion } from "../services/API";
+import { PokemonAPI, PokemonAPIType, PokemonViewCard } from "../interfaces/PokemonAPI";
+import { ResponseAPI } from "../interfaces/ResponseAPI";
 
 function chooseRegion(region: string){
     switch(region){
@@ -8,7 +9,7 @@ function chooseRegion(region: string){
             return '?offset=0&limit=1008';
         case 'kanto':
             return '?offset=0&limit=151';
-        case 'jotho':
+        case 'johto':
             return '?offset=151&limit=100';
         case 'hoenn': 
             return '?offset=251&limit=135';
@@ -29,33 +30,25 @@ function chooseRegion(region: string){
     }
 }
 
-
-type PokemonCard = Omit<Pokemon, 'height' | 'weight' | 'stats' | 'abilities'>;
-
 export const useGetPokemonList = (region: string) => {
-    const fetchData = ref<PokemonCard[]>([]);
+    const fetchData = ref<PokemonViewCard[]>([]);
     const errorLocal = ref<Error | null>(null);
     const loading = ref<boolean>(false);
 
     async function getData(to: string){
         loading.value = false;
         try{
-            const rawData: Awaited<Response> = await API.fetchPokemonRegion(chooseRegion(to));
-            const dataJSON: Awaited<{ results: { name: string, url: string }[] }> = await rawData.json(); 
-            const allPokemon: Awaited<any> = await API.fetchMultiplePokemon<any>(dataJSON.results);
-            if(rawData.ok){
-                fetchData.value = allPokemon.map(((poke: any, index: number) => {
-                    return {
-                        name: poke.name,
-                        image: poke.sprites.front_default,
-                        types: poke.types.map((elem: any) => elem.type.name),
-                        id: poke.id,
-                    };
-                }));
-                loading.value = true;
-            }else{
-                throw new Error('Something went wrong' + rawData.status + ' ' + rawData.statusText);
-            }
+            const rawData: Awaited<ResponseAPI> = await fetchPokemonRegion(chooseRegion(to));
+            const allPokemon: Awaited<PokemonAPI[]> = await fetchMultiplePokemon(rawData);
+            fetchData.value = allPokemon.map((elem: PokemonAPI) => {
+                return {
+                    id: elem.id,
+                    name: elem.species.name,
+                    sprite: elem.sprites.front_default,
+                    types: elem.types.map((elem: PokemonAPIType) => elem.type.name)
+                }
+            })
+            loading.value = true;
         }catch(e){
             console.error(e);
             if (e instanceof Error) {

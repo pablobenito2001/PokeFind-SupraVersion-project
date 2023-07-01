@@ -10,7 +10,7 @@
 </script>
 <styles lang='scss' scoped>
     .Nav{
-        border-bottom: solid 2px var(--input-active);
+        border-bottom: solid 2px var(--alpha-grey);
         padding: .3125rem;
         background-color: var(--white);
         &-container{

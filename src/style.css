@@ -4,19 +4,16 @@
     --red: #DA3564;
     --black: #0f0f0f;
     --white: #fdfdfd;
-    --grey: #a0a0a0;
+    --grey: #cacaca;
     --alpha: #0f0f0f8a;
     --alpha-white: #afafaf23;
-    /* input */ 
-    --input-primary: #f5f5f5; 
-    --input-hover: #e7e7e7; 
-    --input-active: #e4e4e4; 
+    --alpha-grey: #ccccccbd;
     /* Tipografía */
     --principal: 'Mulish', sans-serif;
     --secundary: 'Space Mono', monospace;
     /* Global */
-    --box-shadow: 3px 3px 10px var(--input-active);
-    --box-shadow-hover: 7px 7px 10px var(--input-active);
+    --box-shadow: 3px 3px 10px var(--alpha-grey);
+    --box-shadow-hover: 7px 7px 10px var(--alpha-grey);
     /* size */
     --max-width: 87.5rem;
     --margin: 1.25rem;

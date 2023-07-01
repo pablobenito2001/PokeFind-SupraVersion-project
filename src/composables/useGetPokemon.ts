@@ -1,44 +1,37 @@
 import { ref, Ref } from "vue"; 
-import API from "../services/API";
-import type Pokemon from "../interfaces/Pokemon";
+import { fetchSinglePokemon } from "../services/API";
+import type { PokemonAPI, PokemonView, PokemonAPIType, PokemonAPIAbilitie, PokemonAPIStat } from "../interfaces/PokemonAPI";
 
 export const useGetPokemon = (id: number | string) => {
-    const pokemon: Ref<Pokemon> = ref<Pokemon | null>() as Ref<Pokemon>;
+    const pokemon: Ref<PokemonView> = ref<PokemonView | null>() as Ref<PokemonView>;
     const error: Ref<Error | null> = ref<Error | null>(null) as Ref<Error>;
     const loader: Ref<boolean> = ref<boolean>(false);
 
     const getPokemon = async (id: string | number) => {
+        loader.value = false;
         try {
-            loader.value = false;
-
-            const rawData: Awaited<Response> = await API.fetchSinglePokemon(id);
-            const data: Awaited<any> = await rawData.json();
-            if(rawData.ok){
-                const formater = {
-                    name: data.species.name,
-                    id: data.id,
-                    types: data.types.map((elem: any) => elem.type.name),
-                    image: data.sprites.front_default,
-                    height: data.height,
-                    weight: data.weight,
-                    stats: data.stats.map((elem: any) => {
-                        return {
-                            name: elem.stat.name,
-                            base_stat: elem.base_stat
-                        }
-                    }),
-                    abilities: data.abilities.map((elem: any) => {
-                        return {
-                            name: elem.ability.name,
-                            is_hidden: elem.is_hidden
-                        }
-                    })
-                };
-                pokemon.value = formater;
-                loader.value = true;
-            }else{
-                throw new Error('Something went wrong' + rawData.status + ' ' + rawData.statusText);
-            }
+            const rawData: Awaited<PokemonAPI> = await fetchSinglePokemon(id);
+            pokemon.value = {
+                name: rawData.species.name,
+                id: rawData.id,
+                types: rawData.types.map((elem: PokemonAPIType) => elem.type.name),
+                sprite: rawData.sprites.front_default,
+                abilities: rawData.abilities.map((elem: PokemonAPIAbilitie) => {
+                    return {
+                        name: elem.ability.name,
+                        is_hidden: elem.is_hidden
+                    }
+                }),
+                height: rawData.height,
+                weight: rawData.weight,
+                stats: rawData.stats.map((elem: PokemonAPIStat) => {
+                    return {
+                        name: elem.stat.name,
+                        base_stat: elem.base_stat
+                    }
+                })
+            };
+            loader.value = true;
         } catch (e) {
             console.error(e)
             if(e instanceof Error) error.value = e

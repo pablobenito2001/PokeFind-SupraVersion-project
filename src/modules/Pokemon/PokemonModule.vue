@@ -6,7 +6,7 @@
             :name="pokemon.name" 
             :id="pokemon.id" 
             :types="pokemon.types" 
-            :sprite="pokemon.image" 
+            :sprite="pokemon.sprite" 
             :abilities="pokemon.abilities" 
             :height="pokemon.height" 
             :weight="pokemon.weight"/>

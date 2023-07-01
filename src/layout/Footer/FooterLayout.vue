@@ -13,7 +13,7 @@
         min-width: 100%;
         padding: 2.8125rem .625rem;
         line-height: normal;
-        border-top: solid 2px var(--input-active);
+        border-top: solid 2px var(--grey);
         &-grid{
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(16.25rem, 1fr));
